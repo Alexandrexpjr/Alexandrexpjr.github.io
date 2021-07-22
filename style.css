@@ -1,0 +1,27 @@
+body {
+    font-family: sans-serif;
+    background-color: rgb(219, 219, 230);
+}
+
+.meu-nome {
+    font-family: Verdana, sans-serif;
+}
+
+.description {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+em {
+    font-weight: 550;
+}
+
+strong {
+    color: darkred;
+}
+
+.link_interno {
+    text-decoration: none;
+    line-height: 30px;
+}
+
+
