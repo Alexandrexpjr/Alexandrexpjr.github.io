@@ -4,10 +4,58 @@ body {
     font-family: sans-serif;
     background-color: #f0f0f0;
     font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.all-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 15px;
+    padding-top: 10px;
+}
+
+.name {
+    text-align: center;
 }
 
 .meu-nome {
     font-family: 'Lato', sans-serif;
+    font-size: 50px;
+}
+
+.wrapper {
+    display: block;
+    background-color: #772ce8;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding-top: 10px;
+
+}
+
+.photo {
+    display: inline-block;
+    padding: 10px 25px; 
+}
+
+.photo img {
+    border-radius: 5px;
+    border: 5px solid white;
+}
+
+.description-div {
+    display: inline-block;
+    width: 500px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    line-height: 150%;
+}
+
+.description-div img {
+    width: 200px;
 }
 
 .description {
@@ -19,7 +67,7 @@ em {
 }
 
 strong {
-    color: darkred;
+    color: yellow;
 }
 
 .link_interno {
@@ -50,4 +98,13 @@ strong {
     border-radius: 3px;
     margin-right: 7px;
 
+}
+
+.skills li:nth-child(2n+1) {
+    color: #772ce8;
+    text-decoration: underline;
+}
+
+ul {
+    line-height: 200%;
 }
