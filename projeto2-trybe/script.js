@@ -37,13 +37,13 @@ function splitSentence() {
   } 
   document.querySelector('.third-challenge').innerHTML = arr;
 }
-console.log(splitSentence('Foguete'))
 
 // Desafio 4
-function concatName(arrayDeStrings) {
-  return arrayDeStrings[arrayDeStrings.length - 1] + ', ' + arrayDeStrings[0];
+function concatName() {
+  let arrayDeStrings = prompt("Insira seu nome completo", "Harry Potter");
+  let splitedArray = arrayDeStrings.split(" ");
+  document.querySelector('.fourth-challenge').innerHTML = "Após uma citação, seu nome ficaria: " + splitedArray[splitedArray.length - 1] + ', ' + splitedArray[0];
 }
-console.log(concatName(['Alexandre', 'Xavier', 'Pimentel']));
 
 // Desafio 5
 function footballPoints(vitorias, empates) {
