@@ -3,7 +3,7 @@
 body {
     font-family: sans-serif;
     background-color: #f0f0f0;
-    font-size: 14px;
+    font-size: 16px;
     padding: 0;
     margin: 0;
 }
@@ -76,18 +76,6 @@ strong {
     color: #772ce8;
 }
 
-.first-item {
-    font-size: 18px;
-}
-
-.second-item {
-    font-size: 16px;
-}
-
-.third-item {
-    font-size: 14px;
-}
-
 .link-externo {
     text-decoration: none;
     line-height: 30px;
@@ -100,11 +88,29 @@ strong {
 
 }
 
-.skills li:nth-child(2n+1) {
-    color: #772ce8;
-    text-decoration: underline;
-}
-
 ul {
     line-height: 200%;
+}
+
+#projects-list a{
+    text-decoration: none;
+    font-size: 16px;
+    color: #772ce8;
+}
+
+#projects-list {
+    list-style: none;
+}
+
+#projects-list li {
+    display: inline;
+    margin-right: 30px;
+}
+
+#projects-list img{
+    padding: 0 5px;
+}
+
+#projects-list img:hover{
+    border: 2px solid black;
 }
