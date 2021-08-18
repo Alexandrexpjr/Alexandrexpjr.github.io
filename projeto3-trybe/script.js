@@ -8,7 +8,6 @@ window.onload = function() {
         let arrayOfRandom = ['rgb(' + Math.ceil(Math.random() * 255), Math.ceil(Math.random() * 255), Math.ceil(Math.random() * 255) + ')'];
         let stringRandom = arrayOfRandom.toString();
         getRandom[index].style.backgroundColor = stringRandom;
-        console.log(stringRandom);
     }
 
     getPallet.addEventListener('click', function(event) {
@@ -71,12 +70,26 @@ window.onload = function() {
         }
     })
 
-    let button = document.querySelector('button');
+    let button = document.querySelector('#clear-board');
 
     button.addEventListener('click', function() {
         let getPixel = document.querySelectorAll('.pixel');
         for (let index = 0; index < getPixel.length; index += 1) {
             getPixel[index].style.backgroundColor = "white";
         }
+    })
+
+    const getAddColor = document.getElementById('add-color');
+    const getColors = document.getElementById('colors');
+
+    getAddColor.addEventListener('click', function() {
+        const createDiv = document.createElement('div');
+        let arrayOfRandom = ['rgb(' + Math.ceil(Math.random() * 255), Math.ceil(Math.random() * 255), Math.ceil(Math.random() * 255) + ')'];
+        let stringRandom = arrayOfRandom.toString();
+
+        createDiv.className = 'color random';
+        createDiv.style.backgroundColor = stringRandom;
+        createDiv.style.marginRight = '5px';
+        getColors.appendChild(createDiv);
     })
 }

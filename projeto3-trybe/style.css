@@ -10,9 +10,9 @@
     height: 40px;
 }
 
-.color:nth-child(1) {
+/* .color:nth-child(1) {
     background-color: black;
-}
+} */
 
 /* .color:nth-child(2) {
     background-color: orangered;
@@ -48,3 +48,8 @@
 button {
     margin: 10px 0;
 }
+
+/* #add-color {
+    width: 20px;
+    height: 20px;
+} */
