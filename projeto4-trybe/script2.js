@@ -18,12 +18,35 @@ window.addEventListener('load', function() {
         tasks[index].selected = false;
     }
 
+    function deselectAllTasks() {
+        for(let task of tasks) {
+            task.selected = false;
+        }
+    }
+
+    function toggleSelectTask(index) {
+        if (tasks[index].selected) {
+            deselectTask(index);
+        } else {
+            deselectAllTasks();
+            selectTask(index);
+        }
+    }
+
     function completeTask(index) {
         tasks[index].completed = true;
     }
 
     function uncompleteTask(index) {
         tasks[index].completed = false;
+    }
+
+    function toggleCompleteTask(index) {
+        if (tasks[index].completed) {
+            uncompleteTask(index);
+        } else {
+            completeTask(index);
+        }
     }
 
     function clearTasks() {
@@ -45,6 +68,7 @@ window.addEventListener('load', function() {
     }
 
     function switchTasks(fromIndex, toIndex) {
+        if (toIndex < 0 || toIndex >= tasks.length) return;
         const oldFrom = tasks[fromIndex];
         tasks[fromIndex] = tasks[toIndex];
         tasks[toIndex] = oldFrom;
@@ -58,6 +82,19 @@ window.addEventListener('load', function() {
         switchTasks(index, index + 1);
     }
 
+    function removeCompletedTasks() {
+        tasks = tasks.filter(task => !task.completed);
+    }
+
+    function getSelectedTaskIndex() {
+        for(let index = 0; index < tasks.length; index += 1) {
+            const task = tasks[index];
+
+            if (task.selected) return index;
+        }
+        return -1;
+    }
+
     const tasksElement = document.getElementById('lista-tarefas');
     const addButton = document.getElementById('criar-tarefa');
     const moveUpButton = document.getElementById('mover-cima');
@@ -67,14 +104,13 @@ window.addEventListener('load', function() {
     const removeButton = document.getElementById('remover-selecionado');
     const saveButton = document.getElementById('salvar-tarefas');
     const taskTextInput = document.getElementById('texto-tarefa');
-    const taskElements = tasksElement.children;
+    const completeButton = document.getElementById('completar-selecionado');
 
     function clearScreen() {
         tasksElement.innerHTML = '';
     }
 
     function renderScreen() {
-        console.log(tasks);
         if (tasks) {
             for (let index = 0; index < tasks.length; index += 1) {
                 const task = tasks[index];
@@ -122,9 +158,46 @@ window.addEventListener('load', function() {
     function onTaskElementClick(event) {
         if (event.target.nodeName == 'LI') {
             const elementIndex = event.target.getAttribute('index');
-            selectTask(elementIndex);
+            toggleSelectTask(elementIndex);
             updateScreen();
         };
+    }
+
+    function onMoveUpButtonClick() {
+        const selectedTaskIndex = getSelectedTaskIndex();
+        if (selectedTaskIndex !== -1) {
+            moveUpTask(selectedTaskIndex);
+            updateScreen();
+        }
+    }
+
+    function onMoveDownButtonClick() {
+        const selectedTaskIndex = getSelectedTaskIndex();
+        if (selectedTaskIndex !== -1) {
+            moveDownTask(selectedTaskIndex);
+            updateScreen();
+        }
+    }
+
+    function onRemoveButtonClick() {
+        const selectedTaskIndex = getSelectedTaskIndex();
+        if (selectedTaskIndex !== -1) {
+            deleteTask(selectedTaskIndex);
+            updateScreen();
+        }
+    }
+
+    function onCompleteButtonClick() {
+        const selectedTaskIndex = getSelectedTaskIndex();
+        if (selectedTaskIndex !== -1) {
+            toggleCompleteTask(selectedTaskIndex);
+            updateScreen();
+        }
+    }
+
+    function onRemoveCompletedButtonClick() {
+        removeCompletedTasks();
+        updateScreen();
     }
 
     // Event Listeners
@@ -133,4 +206,11 @@ window.addEventListener('load', function() {
     clearButton.addEventListener('click', onClearButtonClick);
     saveButton.addEventListener('click', onSaveButtonClick);
     tasksElement.addEventListener('click', onTaskElementClick);
+    moveUpButton.addEventListener('click', onMoveUpButtonClick);
+    moveDownButton.addEventListener('click', onMoveDownButtonClick);
+    removeButton.addEventListener('click', onRemoveButtonClick);
+    completeButton.addEventListener('click', onCompleteButtonClick);
+    removeCompletedButton.addEventListener('click', onRemoveCompletedButtonClick);
 });
+
+
