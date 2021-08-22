@@ -11,7 +11,8 @@ body {
 #cabecalho {
     position: fixed;
     top: 0;
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 120px;
     background-color: rgb(253, 251, 251);
     width: 100%;
@@ -25,6 +26,9 @@ body {
     background-color: #2fc18c;
     padding: 14px;
     font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #navigation ul {
@@ -34,7 +38,7 @@ body {
 }
 
 #navigation ul li{
-    display: inline; /*Assim os links ficam em linha, e não listados um sobre o outro*/
+    display: inline-block; /*Assim os links ficam em linha, e não listados um sobre o outro*/
     margin: 0 40px;
     padding: 0; /*Para garantir que padding venha somente do navigation*/
 }
@@ -47,10 +51,22 @@ body {
 
 /*Fim navegação*/
 
+/* #all-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+} */
+
+#lista_links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 #lista_links li{
     display: inline; 
     list-style: none; 
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 #lista_links li:last-child {
@@ -58,7 +74,8 @@ body {
 }
 
 main {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     margin-left: 5%;
     margin-top: 150px; /*Para garantir que o cabeçalho não vai sobrepor o meu main, pois ele está fixado no topo, tem 120px, e ainda tem algumas margens/paddings que aumentam um pouco o tamanho*/
 }
@@ -102,7 +119,8 @@ main {
 }
 
 .lado-esquerdo {
-    width: 60%;
+    display: flex;
+    /* width: 60%; */
 }
 
 #foto_e_links {
@@ -123,26 +141,56 @@ aside .depoimento {
     line-height: 150%;
 }
 
-#aprender, #aprendido, #tabela.oculta {
+#colunas {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#aprender, #aprendido {
     display: inline-block; /*assim, as duas listas ficarão uma ao lado da outra*/
-    width: 33.33%;
     text-align: left;
 }
 
 #rodape {
-    text-align: center;
-    display: block;
+    justify-content: center;
+    display: flex;
     font-size: 12px;
     background-color: rgb(239,239,239);
+    width: 100%;
 }
 
-table {
-    background-color: rgb(253, 251, 251);
-}
-
-table, th, td {
-    border: 1px solid rgb(253, 251, 251);
-    border-collapse: collapse;
-    text-align: center;
-    color: rgb(253, 251, 251);
+@media screen and (max-width: 500px) {
+    #colunas {
+        display: none;
+    }
+    #navigation {
+        display: none;
+    }
+    #cabecalho {
+        position: unset;
+    }
+    header h1 {
+        padding: 15px 0;
+        background-color: #2fc18c;
+        color: #fff;
+    }
+    .lado-direito {
+        padding: 0;
+        width: auto;
+        
+        /* position: absolute; */
+    }
+    .lado-esquerdo {
+        margin: 0;
+        /* float: right; */
+    }
+    #all-content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    #meu_aprendizado {
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
 }
