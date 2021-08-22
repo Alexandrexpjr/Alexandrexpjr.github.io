@@ -26,7 +26,8 @@ body {
 }
 
 .wrapper {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     background-color: #772ce8;
     margin-bottom: 20px;
     border-radius: 5px;
