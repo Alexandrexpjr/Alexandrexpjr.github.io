@@ -1,13 +1,46 @@
-/* body {
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;500&display=swap');
+body {
+    display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
-} */
+    background-image: url(../images/evergreen-2025158.svg);
+    background-repeat: no-repeat;
+    background-size: 1920px;
+}
+
+#all-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    min-width: 450px;
+    /* background-color: white; */
+}
+
+h1 {
+    font-family: 'Indie Flower', cursive;
+    color: #fff;
+}
+
+#color-pallete {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+#board-size {
+    width: 140px;
+}
 
 .color {
     border: 1px solid black;
     display: inline-block;
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 
 /* .color:nth-child(1) {
@@ -47,6 +80,9 @@
 }
 button {
     margin: 10px 0;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 /* #add-color {
