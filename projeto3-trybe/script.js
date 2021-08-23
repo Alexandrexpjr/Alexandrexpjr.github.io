@@ -1,5 +1,5 @@
 window.onload = function() {
-    let getSelected = document.getElementsByClassName('color selected');
+    const getSelected = document.getElementsByClassName('color selected');
     let getPallet = document.querySelector('#color-palette');
     let getColor = document.querySelectorAll('.color');
     let getRandom = document.getElementsByClassName('color random');
@@ -12,7 +12,7 @@ window.onload = function() {
 
     getPallet.addEventListener('click', function(event) {
         let selected = event.target.className;
-        if(selected !== "color selected") {
+        if(selected !== "color selected" && selected) {
             getSelected[0].className = 'color';
             event.target.className = 'color selected';
         }
@@ -33,8 +33,8 @@ window.onload = function() {
         //Limita os valores do lado do board entre 5 e 50
         if (getInput.value < 5) {
             getInput.value = 5;
-        } else if (getInput.value > 50){
-            getInput.value = 50
+        } else if (getInput.value > 15){
+            getInput.value = 15
         }
         const boardSize = getInput.value**2;
 
@@ -91,5 +91,5 @@ window.onload = function() {
         createDiv.style.backgroundColor = stringRandom;
         createDiv.style.marginRight = '5px';
         getColors.appendChild(createDiv);
-    })
+    }) 
 }

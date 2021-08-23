@@ -36,11 +36,16 @@ h1 {
 }
 
 .color {
-    border: 1px solid black;
+    border: 1px solid #333;
     display: inline-block;
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.selected {
+    border: 2px solid black;
+    border-style: double;
 }
 
 /* .color:nth-child(1) {
@@ -83,12 +88,9 @@ button {
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
     font-size: 16px;
+    border-radius: 9px;
+    /* border-style: double; */
 }
-
-/* #add-color {
-    width: 20px;
-    height: 20px;
-} */
 
 #colors {
     width: fit-content;
@@ -96,4 +98,16 @@ button {
 
 #color-palette {
     width: fit-content;
+}
+
+#add-color {
+    background-color: #3f7;
+}
+
+#clear-board {
+    background-color: #f37;
+}
+
+#generate-board {
+    background-color: rgb(33, 153, 233);
 }
