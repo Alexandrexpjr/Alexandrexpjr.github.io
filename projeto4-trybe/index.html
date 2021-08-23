@@ -5,38 +5,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de tarefas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css" type="text/css">
 </head>
 <body>
-  <header> <span>Minha Lista de Tarefas</span> </header>
+
+  <div id="all-content" class="container">
+    <header> <span>Minha Lista de Tarefas</span> </header>
+    
+    <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+    
+    <div>
+      <input type="text" id="texto-tarefa" placeholder="Adicione a tarefa aqui">
+    
+      <button id="criar-tarefa" class="btn btn-primary">&#10010;</button>
+    </div>
+
   
-  <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+    <ol id="lista-tarefas">
   
-  <input type="text" id="texto-tarefa" placeholder="Adicione a tarefa aqui">
-
-  <button id="criar-tarefa">Adicionar tarefa</button>
-
-  <ol id="lista-tarefas">
-
-  </ol>
-
-  <!-- <button id="mover-cima"><img src="./images/icons8-up-arrow-48.png" alt="Seta para cima"></button>
-
-  <button id="mover-baixo"><img src="./images/icons8-down-arrow-48.png" alt="Seta para baixo"></button> -->
-
-  <button id="mover-cima">Mover para cima</button>
-
-  <button id="mover-baixo">Mover para baixo</button>
-
-  <button id="apaga-tudo">Apagar tudo!</button>
-
-  <button id="remover-finalizados">Remover finalizados</button>
-
-  <button id="salvar-tarefas">Salvar tarefas</button>
-
-  <button id="remover-selecionado">Remover selecionado</button>
-
-  <button id="completar-selecionado">Completar selecionado</button>
+    </ol>
+  
+    <div class="botoes">
+      <div class="altera-selecionado">
+        <button id="mover-cima" class="btn btn-light">&#9650;</button>
+      
+        <button id="mover-baixo" class="btn btn-light">&#9660;</button>
+      
+        <button id="remover-selecionado" class="btn btn-danger">&#10007;</button>
+      
+        <button id="completar-selecionado" class="btn btn-success">&#10004;</button>
+      </div>
+    
+      <div class="altera-tudo">
+        <button id="apaga-tudo" class="btn btn-danger">Apagar tudo!</button>
+      
+        <button id="remover-finalizados" class="btn btn-warning">Remover finalizados</button>
+      
+        <button id="salvar-tarefas" class="btn btn-success">Salvar tarefas</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./script2.js"></script>
 </body>
