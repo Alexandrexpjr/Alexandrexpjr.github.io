@@ -26,7 +26,7 @@ function splitSentence() {
   for (let index = 0; index < phrase.length; index += 1) {
     let character = phrase[index];
     if (character === ' ') {
-      arr.push(word);
+      arr.push(word + ' ');
       word = '';
     } else if (index === phrase.length - 1) {
       word += character;
