@@ -3,6 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    text-decoration: none;
+    list-style: none;
 }
 
 #header-container {
@@ -16,26 +18,24 @@
     padding: 30px 0;
 }
 
-main {
+#main-container {
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 150px;
-    /* align-items:flex-start; */
+    align-content: center;
 }
 
 section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    flex-basis: 80%;
     border: 2px solid black;
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 20px;
-    /* flex-shrink: 0; */
+    width: 80%;
 }
+
 
 
 
