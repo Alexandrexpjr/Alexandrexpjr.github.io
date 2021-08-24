@@ -7,13 +7,16 @@
 
 main {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    flex-wrap: wrap;
+    flex-basis: 40%;
+    /* flex-shrink: 0; */
 }
 
 #header-container {

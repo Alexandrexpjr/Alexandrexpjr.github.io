@@ -74,94 +74,104 @@
         </section>
         
         <section id="desafio6">
-            <h3></h3>
+            <h3>Crie uma função que calcule a repetição do maior número</h3>
             <p class="desafio6-description">
-
+                Escreva uma função chamada highestCount que, ao receber uma array de números, retorne a quantidade de vezes que o maior deles se repete.
             </p>
 
         </section>
         
         <section id="desafio7">
-            <h3></h3>
+            <h3>Crie uma função de Caça ao Rato</h3>
             <p class="desafio7-description">
+                Imagine que existem dois gatos, os quais chamaremos de cat1 e cat2, e que ambos estão caçando um mesmo rato chamado mouse. Imagine que os animais estão em uma reta, cada um em uma posição representada por um número.
 
+                Sabendo disso, crie uma função chamada catAndMouse que, ao receber a posição de mouse, cat1 e cat2, nessa ordem, calcule as distâncias entre o rato e cada um dos gatos, em seguida, retorne qual dos felinos irá alcançar o rato primeiro (aquele que estiver mais perto do rato).
+
+                Caso os gatos estejam na mesma distância do rato, a função deverá retornar a string "os gatos trombam e o rato foge".
             </p>
 
         </section>
         
         <section id="desafio8">
-            <h3></h3>
+            <h3>Crie uma função FizzBuzz</h3>
             <p class="desafio8-description">
+                Crie uma função chamada fizzBuzz que receba uma array de números e retorne uma array da seguinte forma:
 
+                Para cada número do Array que seja divisível apenas por 3, apresente uma string "fizz";
+                Para cada número do Array que seja divisível apenas por 5, apresente uma string "buzz";
+                Caso o número seja divisível por 3 e 5, retorne a string "fizzBuzz";
+                Caso o número não possa ser dividido por 3 nem por 5, retorne a string "bug!";
             </p>
 
         </section>
         
         <section id="desafio9">
-            <h3></h3>
+            <h3>Crie uma função que Codifique e Decodifique</h3>
             <p class="desafio9-description">
+                Crie duas funções: a primeira deverá se chamar encode e, ao receber uma string como parâmetro, deverá trocar todas as vogais minúsculas por números, de acordo com o formato a seguir: <br>
 
+                a -> 1 <br>
+                e -> 2 <br>
+                i -> 3 <br>
+                o -> 4 <br>
+                u -> 5 <br>
+
+                Ou seja, caso o parâmetro de encode seja "hi there!", o retorno deverá ser "h3 th2r2!". <br>
+
+                A segunda função deverá se chamar decode e faz o contrário de encode - ou seja, recebe uma string contendo números no lugar de letras minúsculas e retornará uma string com vogais minúsculas no lugar dos números (então, caso o parâmetro de decode seja "h3 th2r2!", o retorno deverá ser "hi there!").
             </p>
 
         </section>
         
         <section id="desafio10">
-            <h3></h3>
+            <h3>Crie uma função de Lista de Tecnologias</h3>
             <p class="desafio10-description">
+                Crie uma função que recebe um array de nomes de tecnologias que você quer aprender. Essa função deve receber também um segundo parâmetro chamado name com um nome. <br>
 
+                Para cada tecnologia no array, crie um objeto com a seguinte estrutura:
+                <div>
+                    {
+                        tech: "NomeTech",
+                        name: name 
+                    }
+                </div>   
             </p>
 
         </section>
         
         <section id="desafio11">
-            <h3></h3>
+            <h3>Crie uma função de Número de Telefone</h3>
             <p class="desafio11-description">
-
+                Crie uma função chamada generatePhoneNumber que receba uma array com 11 números e retorne um número de telefone, respeitando parênteses, traços e espaços.
+                <ul>
+                    <li>Se a função receber um array com tamanho diferente de 11, a mesma deve retornar "Array com tamanho incorreto.".
+                    </li>
+                    <li>Caso algum dos números da array seja menor que 0, maior que 9 ou se repita 3 vezes ou mais, generatePhoneNumber deverá retornar a string "não é possível gerar um número de telefone com esses valores".
+                    </li>
+                </ul>
             </p>
 
         </section>
         
         <section id="desafio12">
-            <h3></h3>
+            <h3>Crie uma função de Condição de existência de um triângulo</h3>
             <p class="desafio12-description">
-
+                Um triângulo é composto de três linhas: lineA, lineB e lineC. Crie uma função chamada triangleCheck que deverá receber as três linhas como parâmetro e retornar se é possível formar um triângulo com os valores apresentados de cada linha.
             </p>
 
         </section>
         
         <section id="desafio13">
-            <h3></h3>
+            <h3>Crie uma função de boas vindas ao Bar da Trybe!</h3>
             <p class="desafio13-description">
-
+                Segundo as regras desse bar, a cada bebida deve-se beber um copo de água para que não se tenha ressaca. <br>
+                Crie a função hydrate que recebe uma string, e retorne a sugestão de quantos copos de água você deve beber. 
             </p>
 
         </section>
         
     </main>
-
-    <button onclick="splitSentence()">Desafio 3</button>
-    <p class="third-challenge"></p>
-    <button onclick="concatName()">Desafio 4</button>
-    <p class="fourth-challenge"></p>
-    <button>Desafio 5</button>
-    <p class="fifth-challenge"></p>
-    <button>Desafio 6</button>
-    <p class="sixth-challenge"></p>
-    <button>Desafio 7</button>
-    <p class="seventh-challenge"></p>
-    <button>Desafio 8</button>
-    <p class="eighth-challenge"></p>
-    <button>Desafio 9</button>
-    <p class="ninth-challenge"></p>
-    <button>Desafio 10</button>
-    <p class="tenth-challenge"></p>
-    <button>Desafio 11</button>
-    <p class="eleventh-challenge"></p>
-    <button>Desafio 12</button>
-    <p class="twelfth-challenge"></p>
-    <button>Desafio 13</button>
-    <p class="thirteenth-challenge"></p>
-
     <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
