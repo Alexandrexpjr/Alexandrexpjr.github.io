@@ -1,15 +1,17 @@
 // Desafio 1
 
-function compareTrue() {
-  let firstEntry = prompt("Escolha dois booleanos (true or false)", "true")
-  let secondEntry = prompt("", "true");
-  if (firstEntry === 'true' && secondEntry === 'true') {
-    document.querySelector('.first-challenge').innerHTML = "Ambos os booleanos sao verdadeiros";
+const getChallenge1 = document.getElementById('secondBoolean');
+
+getChallenge1.addEventListener('change', function() {
+  const firstEntry = document.getElementById('firstBoolean');
+  const secondEntry = document.getElementById('secondBoolean');
+  if (firstEntry.value === 'true' && secondEntry.value === 'true') {
+    document.querySelector('#resultado1').innerHTML = "True";
   } else {
-    document.querySelector('.first-challenge').innerHTML = "Algum booleano é falso";
+    document.querySelector('#resultado1').innerHTML = "False";
   }
-}
-  
+});
+
 // Desafio 2
 function calcArea() {
   let base = prompt("Qual o valor da base do triângulo?", "0");
