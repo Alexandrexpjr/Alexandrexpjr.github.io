@@ -4,6 +4,7 @@ const getChallenge1 = document.getElementById('secondBoolean');
 const getChallenge2 = document.getElementById('calc');
 const getChallenge3 = document.getElementById('split');
 const getChallenge4 = document.getElementById('concat');
+const getChallenge5 = document.getElementById('points');
 
 getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
@@ -17,17 +18,17 @@ getChallenge1.addEventListener('change', () => {
 
 // Desafio 2
 getChallenge2.addEventListener('click', () => {
-  let base = document.getElementById('base').value;
-  let height = document.getElementById('height').value; 
-  let area = (base * height / 2);
+ const base = document.getElementById('base').value;
+ const height = document.getElementById('height').value; 
+ const area = (base * height / 2);
   document.querySelector('#resultado2').innerHTML = "A área do triângulo é: " + area + " m²";
 });
 
 // Desafio 3
 getChallenge3.addEventListener('click', () => {
-  let arr = [];
-  let word = '';
-  let phrase = document.getElementById('phrase').value;
+ let arr = [];
+ let word = '';
+ const phrase = document.getElementById('phrase').value;
   for (let index = 0; index < phrase.length; index += 1) {
     let character = phrase[index];
     if (character === ' ') {
@@ -54,11 +55,15 @@ getChallenge4.addEventListener('click', () => {
 })
 
 // Desafio 5
-function footballPoints(vitorias, empates) {
-  return 3*vitorias + empates;
-}
+const getWins = document.getElementById('wins');
+const getTies = document.getElementById('ties');
 
-console.log(footballPoints(13,1));
+getChallenge5.addEventListener('click', () => {
+  const numberWins = parseInt(getWins.value);
+  const numberTies = parseInt(getTies.value);
+  const score = 3*numberWins + numberTies;
+  document.querySelector('#resultado5').innerHTML = `${score} Pontos`;
+});
 
 // Desafio 6
 function highestCount(numbers) {
