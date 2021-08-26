@@ -3,6 +3,7 @@
 const getChallenge1 = document.getElementById('secondBoolean');
 const getChallenge2 = document.getElementById('calc');
 const getChallenge3 = document.getElementById('split');
+const getChallenge4 = document.getElementById('concat');
 
 getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
@@ -43,11 +44,14 @@ getChallenge3.addEventListener('click', () => {
 })
 
 // Desafio 4
-function concatName() {
-  let arrayDeStrings = prompt("Insira seu nome completo", "Harry Potter");
+getChallenge4.addEventListener('click', () => {
+  let arrayDeStrings = document.getElementById('name').value;
   let splitedArray = arrayDeStrings.split(" ");
-  document.querySelector('.fourth-challenge').innerHTML = "Após uma citação, seu nome ficaria: " + splitedArray[splitedArray.length - 1] + ', ' + splitedArray[0];
-}
+  if (arrayDeStrings === 'Isabella Cristina Freitas Silva de Andrade') {
+    alert('Amor da minha viiii');
+  }
+  document.querySelector('#resultado4').innerHTML = "Após uma citação, seu nome ficaria: " + splitedArray[splitedArray.length - 1] + ', ' + splitedArray[0];
+})
 
 // Desafio 5
 function footballPoints(vitorias, empates) {
