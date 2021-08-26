@@ -49,6 +49,8 @@ h3 {
     margin-top: 20px;
     border-radius: 5px;
     font-size: 16px;
+    flex-basis: 100%;
+    padding: 0 0 0 5px;
 }
 
 /* Desafio 1 */
@@ -59,9 +61,7 @@ h3 {
     margin-top: 10px;
 }
 
-.selectors .resultado {
-    flex-basis: 100%;
+.resultado {
     margin: 0;
-    padding: 0 0 0 5px;
 }
 /* Termina desafio 1 */

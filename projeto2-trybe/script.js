@@ -1,8 +1,9 @@
 // Desafio 1
 
 const getChallenge1 = document.getElementById('secondBoolean');
+const getChallenge2 = document.getElementById('calc');
 
-getChallenge1.addEventListener('change', function() {
+getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
   const secondEntry = document.getElementById('secondBoolean');
   if (firstEntry.value === 'true' && secondEntry.value === 'true') {
@@ -13,11 +14,18 @@ getChallenge1.addEventListener('change', function() {
 });
 
 // Desafio 2
-function calcArea() {
-  let base = prompt("Qual o valor da base do triângulo?", "0");
-  let height = prompt("Qual a altura do triângulo?", "0"); 
+getChallenge2.addEventListener('click', () => {
+  let base = document.getElementById('base').value;
+  let height = document.getElementById('height').value; 
   let area = (base * height / 2);
-  document.querySelector('.second-challenge').innerHTML = "A área do triângulo é: " + area + " m²";
+  document.querySelector('#resultado2').innerHTML = "A área do triângulo é: " + area + " m²";
+});
+
+function calcArea() {
+  let base = document.getElementById('base').value;
+  let height = document.getElementById('height').value; 
+  let area = (base * height / 2);
+  document.querySelector('#resultado2').innerHTML = "A área do triângulo é: " + area + " m²";
 }
 
 // Desafio 3
