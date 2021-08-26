@@ -2,6 +2,7 @@
 
 const getChallenge1 = document.getElementById('secondBoolean');
 const getChallenge2 = document.getElementById('calc');
+const getChallenge3 = document.getElementById('split');
 
 getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
@@ -21,32 +22,25 @@ getChallenge2.addEventListener('click', () => {
   document.querySelector('#resultado2').innerHTML = "A área do triângulo é: " + area + " m²";
 });
 
-function calcArea() {
-  let base = document.getElementById('base').value;
-  let height = document.getElementById('height').value; 
-  let area = (base * height / 2);
-  document.querySelector('#resultado2').innerHTML = "A área do triângulo é: " + area + " m²";
-}
-
 // Desafio 3
-function splitSentence() {
-  let phrase = prompt("Escreva uma frase para ser dividida:", "Exemplo de frase");
+getChallenge3.addEventListener('click', () => {
   let arr = [];
   let word = '';
+  let phrase = document.getElementById('phrase').value;
   for (let index = 0; index < phrase.length; index += 1) {
     let character = phrase[index];
     if (character === ' ') {
-      arr.push(word + ' ');
+      arr.push(' ' + word);
       word = '';
     } else if (index === phrase.length - 1) {
       word += character;
-      arr.push(word);
+      arr.push(' ' + word);
     } else {
       word += character;
     }
   } 
-  document.querySelector('.third-challenge').innerHTML = arr;
-}
+  document.querySelector('#resultado3').innerHTML = arr;
+})
 
 // Desafio 4
 function concatName() {
