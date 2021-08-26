@@ -5,6 +5,7 @@ const getChallenge2 = document.getElementById('calc');
 const getChallenge3 = document.getElementById('split');
 const getChallenge4 = document.getElementById('concat');
 const getChallenge5 = document.getElementById('points');
+const getChallenge6 = document.getElementById('many');
 
 getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
@@ -66,22 +67,25 @@ getChallenge5.addEventListener('click', () => {
 });
 
 // Desafio 6
-function highestCount(numbers) {
+const numbers = document.getElementById('numbers')
+
+getChallenge6.addEventListener('click', () => {
   let numberOfApparitions = 0;
-  let higherNumber = numbers[0];
-  for (let index = 0; index < numbers.length; index += 1) {
-    let actualNumber = numbers[index];
+  const arrayNumb = numbers.value.split(' ');
+  let higherNumber = parseInt(arrayNumb[0]);
+  for (let index = 0; index < arrayNumb.length; index += 1) {
+    let actualNumber = arrayNumb[index];
     if (actualNumber > higherNumber) {
       higherNumber = actualNumber;
     }       
   }
-  for (let index = 0; index < numbers.length; index += 1) {
-    if (numbers[index] === higherNumber) {
+  for (let index = 0; index < arrayNumb.length; index += 1) {
+    if (numbers.value[index] === higherNumber) {
       numberOfApparitions += 1;
     }
   }
-  return numberOfApparitions;
-}
+  document.querySelector('#resultado6').innerHTML = `O maior número é o ${higherNumber} e ele aparece ${numberOfApparitions} vezes`;
+})
 
 console.log(highestCount([1, 9, 2, 3, 9, 5, 7]));
 
