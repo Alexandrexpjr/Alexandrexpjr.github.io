@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Cinzel', serif;
 }
 
 .header {
@@ -8,11 +11,11 @@
   background-color: rgb(50, 167, 145);
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 
 .trybewarts-header-logo {
   width: 80px;
-  padding: 10px;
 }
 
 #trybewarts-header-title {
@@ -23,8 +26,15 @@
   display: flex;
 }
 
+.trybewarts-login input{
+  margin-right: 5px;
+}
+
 main {
   display: flex;
+  margin: 15px auto;
+  width: 80%;
+  justify-content: space-between;
 }
 
 #evaluation-form {
@@ -34,7 +44,12 @@ main {
 }
 
 #trybewarts-forms-logo {
-  height: 500px;
+  height: 400px;
+  align-self: flex-start;
+}
+
+.divs-formulario {
+  margin-top: 10px;
 }
 
 #div-family {
@@ -43,10 +58,33 @@ main {
 }
 
 #div-nome-sobrenome , #div-email-house {
+  margin-top: 15px;
   display: flex;
+  justify-content: space-between;
 }
 
 #div-rate {
   display: flex;
   justify-content: space-between;
+}
+
+#div-rate span {
+  align-self: flex-start;
+}
+
+#div-textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+#div-textarea textarea{
+  height: 100px;
+  width: auto;
+  resize: none;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  background-color: #ddd;
 }

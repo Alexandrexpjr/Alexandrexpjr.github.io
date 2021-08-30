@@ -43,6 +43,8 @@ const getDivFamily = document.getElementById('div-family');
 const getDivConteudo = document.getElementById('div-conteudo');
 const getDivRate = document.getElementById('div-rate');
 const getDivTextArea = document.getElementById('div-textarea');
+const getDivAgreement = document.getElementById('div-agreement');
+const getDivButton = document.getElementById('div-button');
 
 const getInputNome = document.getElementById('input-name');
 const getInputSobrenome = document.getElementById('input-lastname');
@@ -52,6 +54,7 @@ const getLabelFamily = document.getElementsByName('family');
 const getLabelConteudo = document.getElementsByName('label-content');
 const getLabelRate = document.getElementsByName('rate');
 const getTextArea = document.getElementById('textarea');
+const getEvaluationForm = document.getElementById('evaluation-form');
 
 function family() {
   for (let index = 0; index < getLabelFamily.length; index += 1) {
@@ -92,6 +95,8 @@ function getInfo(event) {
   content();
   rate();
   getDivTextArea.innerHTML = `Observações: ${getTextArea.value}`;
+  getDivAgreement.innerHTML = `Eu concordo com o uso das informações acima.`
+  getDivButton.innerHTML = ``;
 }
 
-document.getElementById('evaluation-form').addEventListener('submit', getInfo);
+getEvaluationForm.addEventListener('submit', getInfo);
