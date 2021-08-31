@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+/* Letras e números das casas */
+span {
+    padding: 2px 3px;
+    font-size: 14px !important;
+}
+/* Tabuleiro */
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+}
+/* Casas */
+.square {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    font-size: 60px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* Casas pretas */
+.black {
+    background-color: #888;
+}
+
+.black span {
+    color:#ccc;
+}
+/* Casas brancas */
+.white {
+    background-color: #ccc;
+}
+
+.white span {
+    color: #888;
+}
+/* Casas com letras */
+.letter {
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: end;
+}
+/* Casa com letra e número (a1) */
+.letter .span-number {
+    text-align: start;
+    justify-self: flex-start;
+}
+
+#a1 {
+    justify-content:space-between;
+}
