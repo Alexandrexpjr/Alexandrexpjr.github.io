@@ -115,3 +115,7 @@ ul {
 #projects-list img:hover{
     border: 2px solid black;
 }
+
+#projects-list li:nth-child(6) img {
+    width: 50px;
+}
