@@ -5,7 +5,7 @@ body {
   background-image: url(./images/leone-venter-VieM9BdZKFo-unsplash.jpg);
   background-size: 1920px;
   background-repeat: no-repeat;
-  background-position-x: 80%;
+  background-position-x: 40%;
 }
 
 #all-content {
@@ -13,20 +13,31 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   width: fit-content;
-  padding-bottom: 10px;
+  padding: 20px 20px 30px 20px;
   position: absolute;
   left: 20%;
+  top: 10%;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: lightgray;
 }
 
-header span{
+header h1{
   font-size: 36px;
   font-weight: 600;
+  text-align: center;
 }
 
 #funcionamento {
   font-size: 14px;
   font-style: italic;
+  text-align: center;
+}
+
+#texto-tarefa {
+  margin-right: 10px;
 }
 
 .completed {
@@ -34,7 +45,12 @@ header span{
 }
 
 .selected {
-  background-color: rgb(128,128,128);
+  color: rgb(158,158,158);
+  font-weight: 600;
+}
+
+#lista-tarefas {
+  font-size: 18px;
 }
 
 .botoes {
@@ -44,4 +60,42 @@ header span{
 
 .altera-selecionado, .altera-tudo {
   margin-top: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    background-image: unset;
+    background-color: white;
+  }
+  #all-content {
+    position: unset;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 80%;
+    background-color: lightyellow;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #all-content {
+    border: unset;
+    background-color: unset;
+    width: 90%;
+  }
+  header h1 {
+    font-size: 24px;
+  }
+  #texto-tarefa, #lista-tarefas, .altera-tudo button {
+    font-size: 12px;
+  }
+  #lista-tarefas {
+    font-size: 14px;
+  }
+  .altera-tudo {
+    display: flex;
+    justify-content: space-between;
+  }
+  .altera-tudo button {
+    font-size: 14px;
+  }
 }
