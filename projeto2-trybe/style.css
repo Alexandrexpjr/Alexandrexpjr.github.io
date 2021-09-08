@@ -53,6 +53,16 @@ h3 {
     padding: 0 0 0 5px;
 }
 
+.inputs {  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.inputs input {
+    width: 800px;
+}
+
 /* Desafio 1 */
 .selectors {
     display: flex;

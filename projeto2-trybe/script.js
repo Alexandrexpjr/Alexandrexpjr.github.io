@@ -6,6 +6,11 @@ const getChallenge3 = document.getElementById('split');
 const getChallenge4 = document.getElementById('concat');
 const getChallenge5 = document.getElementById('points');
 const getChallenge6 = document.getElementById('many');
+const getChallenge7 = document.getElementById('hunt');
+const getChallenge8 = document.getElementById('fizzbuzz');
+const getChallenge9e = document.getElementById('encode');
+const getChallenge9d = document.getElementById('decode');
+
 
 getChallenge1.addEventListener('change', () => {
   const firstEntry = document.getElementById('firstBoolean');
@@ -67,7 +72,7 @@ getChallenge5.addEventListener('click', () => {
 });
 
 // Desafio 6
-const numbers = document.getElementById('numbers')
+const numbers = document.getElementById('numbers');
 
 getChallenge6.addEventListener('click', () => {
   let numberOfApparitions = 0;
@@ -87,22 +92,26 @@ getChallenge6.addEventListener('click', () => {
   document.querySelector('#resultado6').innerHTML = `O maior número é o ${higherNumber} e ele aparece ${numberOfApparitions} vezes`;
 })
 
-console.log(highestCount([1, 9, 2, 3, 9, 5, 7]));
-
 // Desafio 7
-function catAndMouse(mouse, cat1, cat2) {
-  let distanceCat1 = Math.abs(mouse - cat1);
-  let distanceCat2 = Math.abs(mouse - cat2);
-  if (distanceCat1 > distanceCat2) {
-    return 'cat2';
-  } else if (distanceCat1 < distanceCat2) {
-    return 'cat1';
-  } else {
-    return 'os gatos trombam e o rato foge';
-  }
-}
 
-console.log(catAndMouse(10,4,3));
+const cat1 = document.getElementById('cat1');
+const cat2 = document.getElementById('cat2');
+const mouse = document.getElementById('mouse');
+
+getChallenge7.addEventListener('click', () => {
+  let distanceCat1 = Math.abs(mouse.value - cat1.value);
+  let distanceCat2 = Math.abs(mouse.value - cat2.value);
+  let hunt = '';
+  if (distanceCat1 > distanceCat2) {
+    hunt = 'O segundo gato chega primeiro';
+  } else if (distanceCat1 < distanceCat2) {
+    hunt = 'O primeiro gato chega primeiro';
+  } else {
+    hunt = 'Os gatos trombam e o rato foge';
+  }
+  document.querySelector('#resultado7').innerHTML = hunt;
+})
+
 
 // Desafio 8
 // function fizzBuzz(numbersFizz) {
@@ -122,10 +131,15 @@ console.log(catAndMouse(10,4,3));
 //   return result
 // }
 
-function fizzBuzz(numbersFizz) {
+const numbersFizz = document.getElementById('array');
+
+getChallenge8.addEventListener('click', () => {
   let result = [];
-  for (let index = 0; index < numbersFizz.length; index += 1) {
-    const actualNumber = numbersFizz[index];
+  const numbersArray = numbersFizz.value.split(',');
+  console.log(numbersArray);
+  for (let index = 0; index < numbersArray.length; index += 1) {
+   
+    const actualNumber = parseInt(numbersArray[index], 10);
     let dividedBy3 = actualNumber % 3 === 0;
     let dividedBy5 = actualNumber % 5 === 0;
     if (dividedBy3 && dividedBy5) {
@@ -138,16 +152,17 @@ function fizzBuzz(numbersFizz) {
       result.push('bug!');
     }
   }
-  return result;
-}
-
-console.log(fizzBuzz([2, 15, 7, 9, 45])); 
+  document.querySelector('#resultado8').innerHTML = result;
+})
 
 // Desafio 9
-function encode(phrase) {
+
+const phrase = document.getElementById('message');
+
+getChallenge9e.addEventListener('click', () => {
   let encodedPhrase = '';
-  for (let index = 0; index < phrase.length; index += 1) {
-    let character = phrase[index];
+  for (let index = 0; index < phrase.value.length; index += 1) {
+    let character = phrase.value[index];
     switch (character) {
       case 'a':
         encodedPhrase += '1';
@@ -168,15 +183,13 @@ function encode(phrase) {
         encodedPhrase += character;       
     } 
   }
-  return encodedPhrase;
-}
+  document.querySelector('#resultado9').innerHTML = encodedPhrase;
+})
 
-console.log(encode('hi there'));
-
-function decode(encodedPhrase) {
+getChallenge9d.addEventListener('click', () => {
   let decodedPhrase = '';
-  for (let index = 0; index < encodedPhrase.length; index += 1) {
-    let character = encodedPhrase[index];
+  for (let index = 0; index < phrase.value.length; index += 1) {
+    let character = phrase.value[index];
     switch (character) {
       case '1':
         decodedPhrase += 'a';
@@ -197,10 +210,8 @@ function decode(encodedPhrase) {
         decodedPhrase += character;       
     } 
   }
-  return decodedPhrase;
-}
-
-console.log(decode('h3 th2r2!'));
+  document.querySelector('#resultado9').innerHTML = decodedPhrase;
+})
 
 // Desafio 10
 function techList(tech, name) {

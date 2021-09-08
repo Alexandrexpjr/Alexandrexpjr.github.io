@@ -76,8 +76,10 @@
             <p class="desafio4-description">
                 Escreva uma função que, ao receber uma array de strings, retorne uma string com o formato 'ÚLTIMO ITEM, PRIMEIRO ITEM', independente do tamanho da array.
             </p>
-            <input type="text" id="name" placeholder="Insira seu nome completo aqui" autocomplete = "off">
-            <button id="concat">Concatenar</button>
+            <div>
+                <input type="text" id="name" placeholder="Insira seu nome completo aqui" autocomplete = "off">
+                <button id="concat">Concatenar</button>
+            </div>
             <div class="resultado" id="resultado4">
 
             </div>
@@ -88,9 +90,11 @@
             <p class="desafio5-description">
                 Escreva uma função que receba o número de vitórias (esse parâmetro deverá se chamar wins) e o número de empates (esse parâmetro deverá se chamar ties) e retorne a quantidade de pontos que o time marcou em um campeonato.
             </p>
-            <input type="text" id="wins" placeholder="Vitórias">
-            <input type="text" id="ties" placeholder="Empates">
-            <button id="points">Calcular pontos</button>
+            <div>
+                <input type="text" id="wins" placeholder="Vitórias">
+                <input type="text" id="ties" placeholder="Empates">
+                <button id="points">Calcular pontos</button>
+            </div>
             <div class="resultado" id="resultado5">
 
             </div>
@@ -114,10 +118,16 @@
             <p class="desafio7-description">
                 Imagine que existem dois gatos, os quais chamaremos de cat1 e cat2, e que ambos estão caçando um mesmo rato chamado mouse. Imagine que os animais estão em uma reta, cada um em uma posição representada por um número.
 
-                Sabendo disso, crie uma função chamada catAndMouse que, ao receber a posição de mouse, cat1 e cat2, nessa ordem, calcule as distâncias entre o rato e cada um dos gatos, em seguida, retorne qual dos felinos irá alcançar o rato primeiro (aquele que estiver mais perto do rato).
+                Sabendo disso, crie uma função chamada que, ao receber a posição de mouse, cat1 e cat2, nessa ordem, calcule as distâncias entre o rato e cada um dos gatos, em seguida, retorne qual dos felinos irá alcançar o rato primeiro (aquele que estiver mais perto do rato).
 
                 Caso os gatos estejam na mesma distância do rato, a função deverá retornar a string "os gatos trombam e o rato foge".
             </p>
+            <div>
+                <input type="number" name="mouse" placeholder="Posição do rato" id="mouse">
+                <input type="number" name="cat1" placeholder="Posição do gato 1" id="cat1">
+                <input type="number" name="cat2" placeholder="Posição do gato 2" id="cat2">
+                <button id="hunt">Caçada</button>
+            </div>
 
             <div class="resultado" id="resultado7">
 
@@ -128,14 +138,15 @@
         <section id="desafio8">
             <h3>Crie uma função FizzBuzz</h3>
             <p class="desafio8-description">
-                Crie uma função chamada fizzBuzz que receba uma array de números e retorne uma array da seguinte forma:
+                Crie uma função que receba uma array de números e retorne uma array da seguinte forma:
 
                 Para cada número do Array que seja divisível apenas por 3, apresente uma string "fizz";
                 Para cada número do Array que seja divisível apenas por 5, apresente uma string "buzz";
                 Caso o número seja divisível por 3 e 5, retorne a string "fizzBuzz";
                 Caso o número não possa ser dividido por 3 nem por 5, retorne a string "bug!";
             </p>
-
+            <input type="text" id="array" placeholder="Insira os números a serem convertidos, separados por vírgula. Ex: 1, 3, 5, 15, 33">
+            <button id="fizzbuzz">Converter</button>
             <div class="resultado" id="resultado8">
 
             </div>
@@ -157,7 +168,13 @@
 
                 A segunda função deverá se chamar decode e faz o contrário de encode - ou seja, recebe uma string contendo números no lugar de letras minúsculas e retornará uma string com vogais minúsculas no lugar dos números (então, caso o parâmetro de decode seja "h3 th2r2!", o retorno deverá ser "hi there!").
             </p>
-
+            <div class="inputs">
+                <input type="text" id="message" placeholder="Mensagem a ser codificada/decodificada">
+                <div>
+                    <button id="encode">Codificar</button>
+                    <button id="decode">Decodificar</button>
+                </div>
+            </div>
             <div class="resultado" id="resultado9">
 
             </div>
