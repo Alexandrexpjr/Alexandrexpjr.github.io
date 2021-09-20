@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#battle-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-image: url(https://i.pinimg.com/originals/9c/77/9b/9c779ba1dcb98ed867bbaa5630ea245c.jpg);
+    color: white;
+}
+
+#heroes {
+    display: flex;
+}
+
+#warrior, #mage {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px 50px;
+}
+
+#warrior img, #mage img {
+    height: 250px;
+    margin-bottom: 20px;
+}    
+
+#dragon {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+#dragon img {
+    height: 600px;
+}
+
+#warrior-hp, #mage-hp, #dragon-hp {
+    background-color: red;
+    border-radius: 5px;
+    height: 10px;
+}
+
+#warrior-hp, #mage-hp {
+    background-color: rgb(111, 236, 39);
+}
+
+#mage-mana {
+    background-color: blue;
+    border-radius: 5px;
+    height: 10px;
+    margin-top: 10px;
+}
+
+span {
+    text-align: center;
+}
+
+#battle-btn {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: darkgray;
+}
+
+#warrior-btn {
+    margin-top: 37px;
+}
