@@ -156,6 +156,7 @@ getMageButton.addEventListener('click', () => {
     if (dragon.healthPoints <= 0) {
       dragon.healthPoints = 0;
       alert('The heroes won the battle!');
+      getMageButton.disabled = true;
     };
     
     getMageMP.style.width = `${(mage.mana / 125) * 100}%`;
