@@ -11,7 +11,7 @@ body {
   display: block;
   width: 640px;
   height: 640px;
-  background-color: #ccc;
+  background-color: rgb(103, 155, 233);
   position: relative;
   font-size: 64px;
 }
@@ -38,7 +38,7 @@ body {
 #gridLayer .square:nth-child(40) ~ .square:nth-child(-2n+47),
 #gridLayer .square:nth-child(48) ~ .square:nth-child(-2n+56),
 #gridLayer .square:nth-child(56) ~ .square:nth-child(-2n+63) {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 #piecesLayer .piece {
