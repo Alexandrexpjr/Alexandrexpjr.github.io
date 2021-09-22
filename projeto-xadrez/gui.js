@@ -85,7 +85,8 @@ function onPieceClick(piece) {
 }
 
 function onChessBoardClick(event) {
-  if (selectedPiece) {
+  // Só chama o movimento se o alvo for diferente dele meixmo
+  if (selectedPiece && selectedPiece.x != x || selectedPiece.y != y) {
     const squareSize = chessBoardEl.offsetWidth / 8;
 
     let layerX = event.offsetX || event.layerX;
@@ -99,10 +100,7 @@ function onChessBoardClick(event) {
     const x = Math.floor(layerX / squareSize);
     const y = 7 - Math.floor(layerY / squareSize);
 
-    // Só chama o movimento se o alvo for diferente dele meixmo
-    if (selectedPiece.x != x || selectedPiece.y != y) {
-      movePiece(selectedPiece, x, y);
-    }
+    movePiece(selectedPiece, x, y);
   }
 }
 
