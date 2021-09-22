@@ -61,7 +61,7 @@ function highlightMoves(positions) {
 function selectSquare(piece) {
   selectedPiece = piece;
 
-  // removeMoveHighlights();
+  removeMoveHighlights();
 
   const validMoves = selectedPiece.validMoves();
   highlightMoves(validMoves);
