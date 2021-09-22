@@ -14,6 +14,7 @@ body {
   background-color: rgb(103, 155, 233);
   position: relative;
   font-size: 64px;
+  margin-left: 30px;
 }
 
 #gridLayer, #piecesLayer {
@@ -26,8 +27,18 @@ body {
 
 #gridLayer .square {
   display: block;
+  position: relative;
   width: 12.5%;
   height: 12.5%;
+}
+
+#gridLayer .square.selected:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 217, 0, 0.5);
 }
 
 #gridLayer .square:nth-child(-2n+8), 
@@ -39,6 +50,32 @@ body {
 #gridLayer .square:nth-child(48) ~ .square:nth-child(-2n+56),
 #gridLayer .square:nth-child(56) ~ .square:nth-child(-2n+63) {
   background-color: rgba(0, 0, 0, 0.35);
+}
+
+#gridLayer .square.can-move:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#gridLayer .square.can-attack:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 50%;
+  top: 50%;
+  border: solid 5px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #piecesLayer .piece {
@@ -131,3 +168,4 @@ body {
 #piecesLayer .piece.h6 { bottom: 62.5%; left: 87.5%; }
 #piecesLayer .piece.h7 { bottom: 75%; left: 87.5%; }
 #piecesLayer .piece.h8 { bottom: 87.5%; left: 87.5%; }
+
