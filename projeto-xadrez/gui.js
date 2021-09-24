@@ -4,6 +4,11 @@ const piecesLayerEl = document.querySelector('#piecesLayer');
 
 const chessBoard = new ChessBoard();
 let selectedPiece = undefined;
+let currentTurn = PieceColors.WHITE;
+
+function switchTurn() {
+  currentTurn = (currentTurn === PieceColors.WHITE) ? PieceColors.BLACK : PieceColors.WHITE;
+}
 
 function createBoard() {
   for (let i = 0; i < 64; i += 1) {
@@ -29,6 +34,11 @@ function updatePiece(piece) {
   const pieceEl = piecesLayerEl.querySelector(`.piece.${piece.identifier}`);
   pieceEl.className = '';
   pieceEl.classList.add('piece', piece.identifier, piece.color.slug, piece.position.name);
+  if (piece.isDead) {
+    pieceEl.classList.add('dead');
+  }
+
+  // dps de um tempo, deleta a peça
 }
 
 function createPieces(chessBoard) {
@@ -44,10 +54,22 @@ function deselectAllSquares() {
   });
 }
 
+function selectSquare(position) {
+  const squareEl = gridLayerEl.querySelector(`.square.${position.name}`);
+  squareEl.classList.add('selected');
+}
+
 function removeMoveHighlights() {
   const movesSquares = gridLayerEl.querySelectorAll('.square.can-move');
   movesSquares.forEach((squareEl) => {
     squareEl.classList.remove('can-move');
+  });
+}
+
+function removeAttackHighlights() {
+  const attacksSquares = gridLayerEl.querySelectorAll('.square.can-attack');
+  attacksSquares.forEach((squareEl) => {
+    squareEl.classList.remove('can-attack');
   });
 }
 
@@ -58,35 +80,69 @@ function highlightMoves(positions) {
   });
 }
 
-function selectSquare(piece) {
-  selectedPiece = piece;
+function highlightAttacks(positions) {
+  positions.forEach((position) => {
+    const squareEl = gridLayerEl.querySelector(`.square.${position.name}`);
+    squareEl.classList.add('can-attack');
+  });
+}
 
-  removeMoveHighlights();
+function selectPiece(piece) {
+  if(piece.color === currentTurn) {
 
-  const validMoves = selectedPiece.validMoves();
-  highlightMoves(validMoves);
-
-  const squareEl = gridLayerEl.querySelector(`.square.${selectedPiece.position.name}`);
-  squareEl.classList.add('selected');
+    selectedPiece = piece;
+  
+    deselectAllSquares();
+  
+    removeMoveHighlights();
+    removeAttackHighlights();
+  
+    const validMoves = selectedPiece.validMoves();
+    highlightMoves(validMoves);
+  
+    const validAttacks = selectedPiece.validAttacks();
+    highlightAttacks(validAttacks);
+  
+    selectSquare(selectedPiece.position);
+  }
 }
 
 function movePiece(piece, x, y) {
-  console.log('MOVE');
-  piece.move(x, y);
-  updatePiece(piece);
-  removeMoveHighlights();
+  if (piece.move(x, y)) {
+    selectedPiece = undefined;
+
+    updatePiece(piece);
+
+    deselectAllSquares();
+    removeMoveHighlights();
+    removeAttackHighlights();
+    switchTurn();
+  }
+}
+
+function attackPiece(piece, targetPiece) {
+  if (piece.attack(targetPiece)) {
+    selectedPiece = undefined;
+
+    updatePiece(piece);
+    updatePiece(targetPiece);
+
+    deselectAllSquares();
+    removeMoveHighlights();
+    removeAttackHighlights();
+    switchTurn();
+  }
 }
 
 function onPieceClick(piece) {
   return (event) => {
-    deselectAllSquares();
-    selectSquare(piece);
+    selectPiece(piece);
   };
 }
 
 function onChessBoardClick(event) {
-  // Só chama o movimento se o alvo for diferente dele meixmo
-  if (selectedPiece && selectedPiece.x != x || selectedPiece.y != y) {
+  // Só chama o movimento se o alvo for diferente dele meixmo 
+  if (selectedPiece) {
     const squareSize = chessBoardEl.offsetWidth / 8;
 
     let layerX = event.offsetX || event.layerX;
@@ -100,7 +156,15 @@ function onChessBoardClick(event) {
     const x = Math.floor(layerX / squareSize);
     const y = 7 - Math.floor(layerY / squareSize);
 
-    movePiece(selectedPiece, x, y);
+    if (selectedPiece.x != x || selectedPiece.y != y) {
+      const targetPiece = chessBoard.getPieceAtPosition(x, y);
+
+      if (targetPiece) {
+        attackPiece(selectedPiece, targetPiece);
+      } else {
+        movePiece(selectedPiece, x, y);
+      }
+    }
   }
 }
 

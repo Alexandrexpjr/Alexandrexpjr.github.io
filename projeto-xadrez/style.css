@@ -7,6 +7,14 @@ body {
   padding: 0;
 }
 
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 #chessBoard {
   display: block;
   width: 640px;
@@ -86,7 +94,9 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  transition: bottom 300ms, left 300ms;
+  transition: bottom 300ms, left 300ms, transform 300ms, opacity 300ms;
+  user-select: none;
+  cursor: pointer;
 }
 
 #piecesLayer .piece.black {
@@ -96,6 +106,14 @@ body {
 #piecesLayer .piece.white {
   color: white;
 }
+
+#piecesLayer .piece.dead {
+  pointer-events: none;
+  transform: scale(2);
+  opacity: 0;
+  z-index: 1;
+}
+
 
 #piecesLayer .piece.a1 { bottom: 0; left: 0; }
 #piecesLayer .piece.a2 { bottom: 12.5%; left: 0; }
