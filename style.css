@@ -123,3 +123,38 @@ ul {
 #axe {
     width: 50px;
 }
+
+@media screen and (max-width: 500px) {
+    .description, .all-content {
+        font-size: 14px !important;
+    }
+    .photo {
+        padding: 0;
+        margin: 0 auto;
+        display: flex;
+    }
+    .photo img {
+        padding: 0;
+        width: 85%;
+        margin: 0 auto;
+    }
+    .description-div {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 85%;
+    }
+    .description-div img {
+       display: none;
+    }
+    #links-internos {
+        display: none;
+    }
+    .meu-nome {
+        font-size: 28px;
+    }
+    footer {
+        /* display: flex; */
+        text-align: center;
+    }
+}
