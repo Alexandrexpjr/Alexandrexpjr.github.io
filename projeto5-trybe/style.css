@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   font-family: 'Cinzel', serif;
+  font-weight: 600;
+  box-sizing: border-box;
 }
 
 .header {
@@ -33,19 +35,29 @@
 main {
   display: flex;
   margin: 15px auto;
-  width: 80%;
+  width: 90%;
+}
+
+#main-content {
+  display: flex;
   justify-content: space-between;
+  margin: 0 auto;
 }
 
 #evaluation-form {
   display: flex;
-  width: 675px;
+  width: 60%;
   flex-direction: column;
 }
 
-#trybewarts-forms-logo {
-  height: 400px;
+#div-logo {
+  width: 40%;
   align-self: flex-start;
+}
+
+#trybewarts-forms-logo {
+  width: 100%;
+  max-width: 400px;
 }
 
 .divs-formulario {
@@ -65,7 +77,10 @@ main {
 
 #div-rate {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+#div-rate div span {
+  margin-right: 5px;
 }
 
 #div-rate span {
@@ -87,4 +102,65 @@ footer {
   text-align: center;
   font-size: 12px;
   background-color: #ddd;
+}
+
+@media screen and (max-width: 850px) {
+  body {
+    width: 100%;
+  }
+  .header {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: left;
+    
+  }
+  .trybewarts-login {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-right: 10px;
+  }
+  .trybewarts-header-logo, #trybewarts-header-title {
+    padding-right: 20px;
+  }
+  #main-content {  
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+  }
+  #evaluation-form {
+    width: 90%;
+  }
+  #div-logo {
+    display:flex;
+    order: -1;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  #trybewarts-forms-logo {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .trybewarts-login input{
+    width: 40%;
+  }
+  #div-nome-sobrenome input, #div-email input {
+    width: 90%;
+  }
+
+  #div-logo {
+    display:flex;
+    order: 1;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  #div-rate {
+    display: flex;
+    flex-direction: column;
+  }
+  footer {
+    padding: 0 15px;
+  }
 }
