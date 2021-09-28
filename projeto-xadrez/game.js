@@ -1,5 +1,4 @@
-const PieceColors = {
-    WHITE: {
+const PieceColors = {    WHITE: {
         name: 'White',
         slug: 'white',
         direction: 1
@@ -9,6 +8,17 @@ const PieceColors = {
         slug: 'black',
         direction: -1
     }
+};
+
+const Directions = {
+    N: { x: 0, y: 1 },
+    NE: { x: 1, y: 1 },
+    E: { x: 1, y: 0 },
+    SE: { x: 1, y: -1 },
+    S: { x: 0, y: -1 },
+    SW: { x: -1, y: -1 },
+    W: { x: -1, y: 0 },
+    NW: { x: -1, y: 1 }
 };
 
 class Position {
@@ -107,6 +117,27 @@ class Piece {
         return true;
     }
 
+    raycast(direction, amount, counter = 1, result = []) {
+        if (counter > amount) return result;
+
+        const nextPosition = new Position(this.x + (direction.x * counter), this.y + (direction.y * counter));
+        
+        if (nextPosition.x < 0 || nextPosition.x > 7 || nextPosition.y < 0 || nextPosition.y > 7) return result;
+
+        const pieceFound = this.chessBoard.getPieceAtPosition(nextPosition.x, nextPosition.y);
+
+        if (pieceFound) {
+            result.push(pieceFound);
+            return result;
+        }
+
+        result.push(nextPosition);
+
+        counter += 1;
+        
+        return this.raycast(direction, amount, counter, result);
+    }
+
     get chessBoard() {
         return this._chessBoard;
     }
@@ -154,24 +185,37 @@ class King extends Piece {
     }
 
     validMoves() {
-        let validMoves = [
-            new Position(this.x + 1, this.y),
-            new Position(this.x - 1, this.y),
-            new Position(this.x + 1, this.y + 1),
-            new Position(this.x - 1, this.y + 1),
-            new Position(this.x + 1, this.y - 1),
-            new Position(this.x - 1, this.y - 1),
-            new Position(this.x, this.y + 1),
-            new Position(this.x, this.y - 1)
+        let raycasts = [
+            ...this.raycast(Directions.N, 1),
+            ...this.raycast(Directions.NE, 1),
+            ...this.raycast(Directions.E, 1),
+            ...this.raycast(Directions.SE, 1),
+            ...this.raycast(Directions.S, 1),
+            ...this.raycast(Directions.SW, 1),
+            ...this.raycast(Directions.W, 1),
+            ...this.raycast(Directions.NW, 1)
         ];
 
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
+        return raycasts
+            .filter((move) => move instanceof Position);
+    }
 
-        // Remove as posições as quais possuem peças
-        validMoves = validMoves.filter((position) => !this.chessBoard.getPieceAtPosition(position.x, position.y));
-        
-        return validMoves;
+    validAttacks() {
+        let raycasts = [
+            ...this.raycast(Directions.N, 1),
+            ...this.raycast(Directions.NE, 1),
+            ...this.raycast(Directions.E, 1),
+            ...this.raycast(Directions.SE, 1),
+            ...this.raycast(Directions.S, 1),
+            ...this.raycast(Directions.SW, 1),
+            ...this.raycast(Directions.W, 1),
+            ...this.raycast(Directions.NW, 1)
+        ];
+
+        return raycasts
+            .filter((move) => move instanceof Piece)
+            .filter((piece) => piece._color !== this._color)
+            .map((piece) => piece.position);
     }
 }
 
@@ -181,23 +225,37 @@ class Queen extends Piece {
     }
     
     validMoves() {
-        let validMoves = [];
+        let raycasts = [
+            ...this.raycast(Directions.N, 7),
+            ...this.raycast(Directions.NE, 7),
+            ...this.raycast(Directions.E, 7),
+            ...this.raycast(Directions.SE, 7),
+            ...this.raycast(Directions.S, 7),
+            ...this.raycast(Directions.SW, 7),
+            ...this.raycast(Directions.W, 7),
+            ...this.raycast(Directions.NW, 7)
+        ];
 
-        for (let i = 1; i <= 7; i += 1) {
-            validMoves.push(new Position(this.x + i, this.y), 
-                new Position(this.x - i, this.y), 
-                new Position(this.x, this.y - i), 
-                new Position(this.x, this.y + i), 
-                new Position(this.x + i, this.y + i), 
-                new Position(this.x - i, this.y - i), 
-                new Position(this.x + i, this.y - i), 
-                new Position(this.x - i, this.y + i));
-        }
+        return raycasts
+            .filter((move) => move instanceof Position);
+    }
 
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
+    validAttacks() {
+        let raycasts = [
+            ...this.raycast(Directions.N, 7),
+            ...this.raycast(Directions.NE, 7),
+            ...this.raycast(Directions.E, 7),
+            ...this.raycast(Directions.SE, 7),
+            ...this.raycast(Directions.S, 7),
+            ...this.raycast(Directions.SW, 7),
+            ...this.raycast(Directions.W, 7),
+            ...this.raycast(Directions.NW, 7)
+        ];
 
-        return validMoves;
+        return raycasts
+            .filter((move) => move instanceof Piece)
+            .filter((piece) => piece._color !== this._color)
+            .map((piece) => piece.position);
     }
 }
 
@@ -207,36 +265,29 @@ class Rook extends Piece {
     }
 
     validMoves() {
-        let validMoves = [];
+        let raycasts = [
+            ...this.raycast(Directions.N, 7),
+            ...this.raycast(Directions.E, 7),
+            ...this.raycast(Directions.S, 7),
+            ...this.raycast(Directions.W, 7)
+        ];
 
-        let directions = {
-            n: true,
-            s: true,
-            e: true,
-            w: true
-        }
+        return raycasts
+            .filter((move) => move instanceof Position);
+    }
 
-        for (let i = 1; i <= 7; i += 1) {
-            const positionN = new Position(this.x, this.y - i);
-            const positionS = new Position(this.x, this.y + i);
-            const positionE = new Position(this.x + i, this.y);
-            const positionW = new Position(this.x - i, this.y);
+    validAttacks() {
+        let raycasts = [
+            ...this.raycast(Directions.N, 7),
+            ...this.raycast(Directions.E, 7),
+            ...this.raycast(Directions.S, 7),
+            ...this.raycast(Directions.W, 7)
+        ];
 
-            if (directions.n && this.chessBoard.getPieceAtPosition(positionN.x, positionN.y)) directions.n = false;
-            if (directions.s && this.chessBoard.getPieceAtPosition(positionS.x, positionS.y)) directions.s = false;
-            if (directions.e && this.chessBoard.getPieceAtPosition(positionE.x, positionE.y)) directions.e = false;
-            if (directions.w && this.chessBoard.getPieceAtPosition(positionW.x, positionW.y)) directions.w = false;
-            
-            if (directions.n) validMoves.push(positionN);
-            if (directions.s) validMoves.push(positionS);
-            if (directions.e) validMoves.push(positionE);
-            if (directions.w) validMoves.push(positionW);
-        }
-
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
-
-        return validMoves;
+        return raycasts
+            .filter((move) => move instanceof Piece)
+            .filter((piece) => piece._color !== this._color)
+            .map((piece) => piece.position);
     }
 }
 
@@ -246,19 +297,29 @@ class Bishop extends Piece {
     }
 
     validMoves() {
-        let validMoves = [];
+        let raycasts = [
+            ...this.raycast(Directions.NE, 7),
+            ...this.raycast(Directions.SE, 7),
+            ...this.raycast(Directions.SW, 7),
+            ...this.raycast(Directions.NW, 7)
+        ];
 
-        for (let i = 1; i <= 7; i += 1) {
-            validMoves.push(new Position(this.x + i, this.y + i), 
-                new Position(this.x - i, this.y - i), 
-                new Position(this.x + i, this.y - i), 
-                new Position(this.x - i, this.y + i));
-        }
+        return raycasts
+            .filter((move) => move instanceof Position);
+    }
 
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
+    validAttacks() {
+        let raycasts = [
+            ...this.raycast(Directions.NE, 7),
+            ...this.raycast(Directions.SE, 7),
+            ...this.raycast(Directions.SW, 7),
+            ...this.raycast(Directions.NW, 7)
+        ];
 
-        return validMoves;
+        return raycasts
+            .filter((move) => move instanceof Piece)
+            .filter((piece) => piece._color !== this._color)
+            .map((piece) => piece.position);
     }
 }
 
@@ -319,38 +380,28 @@ class Pawn extends Piece {
     }
 
     validMoves() {
-        let validMoves = [
-            new Position(this.x, this.y + this._color.direction)    
-        ];
+        const moveAmount = this._hasMoved ? 1 : 2;
+        const direction = this._color === PieceColors.WHITE ? Directions.N : Directions.S;
 
-        // Passo duplo inicial
-        if (!this._hasMoved && !this.chessBoard.getPieceAtPosition(validMoves[0].x, validMoves[0].y)) validMoves.push(new Position(this.x, this.y + (this._color.direction * 2)));
-        
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
+        let raycast = this.raycast(direction, moveAmount);
 
-        // Remove as posições as quais possuem peças
-        validMoves = validMoves.filter((position) => !this.chessBoard.getPieceAtPosition(position.x, position.y));
-
-        return validMoves;
+        return raycast
+            .filter((move) => move instanceof Position);
     }
 
     validAttacks() {
-        let validAttacks = [
-            new Position(this.x - 1, this.y + this._color.direction),
-            new Position(this.x + 1, this.y + this._color.direction)
+        const eastDirection = this._color === PieceColors.WHITE ? Directions.NE : Directions.SE;
+        const westDirection = this._color === PieceColors.WHITE ? Directions.NW : Directions.SW;
+
+        let raycasts = [
+            ...this.raycast(eastDirection, 1),
+            ...this.raycast(westDirection, 1)
         ];
 
-        // Removendo quem tá fora do tabuleiro
-        validAttacks = validAttacks.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
-
-        // Remove as posições as quais não possuem inimigos
-        validAttacks = validAttacks.filter((position) => {
-            const targetPiece = this.chessBoard.getPieceAtPosition(position.x, position.y);
-            return targetPiece && targetPiece.color !== this.color;
-        });
-        
-        return validAttacks;
+        return raycasts
+            .filter((move) => move instanceof Piece)
+            .filter((piece) => piece._color !== this._color)
+            .map((piece) => piece.position);
     }
 }
 
