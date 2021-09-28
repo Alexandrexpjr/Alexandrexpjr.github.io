@@ -1,12 +1,11 @@
-const PieceColors = {    WHITE: {
+const PieceColors = {
+    WHITE: {
         name: 'White',
-        slug: 'white',
-        direction: 1
+        slug: 'white'
     },
     BLACK: {
         name: 'Black',
-        slug: 'black',
-        direction: -1
+        slug: 'black'
     }
 };
 
@@ -340,13 +339,11 @@ class Horse extends Piece {
             new Position(this.x - 2, this.y - 1)
         ];
         
-        // Removendo quem tá fora do tabuleiro
-        validMoves = validMoves.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
-
-        // Remove as posições as quais possuem peças
-        validMoves = validMoves.filter((position) => !this.chessBoard.getPieceAtPosition(position.x, position.y));
-
-        return validMoves;
+        return validMoves
+            // Remove posições inválidas
+            .filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8))
+            // Ignora peças que possuem posições
+            .filter((position) => !this.chessBoard.getPieceAtPosition(position.x, position.y));
     }
 
     validAttacks() {
@@ -360,17 +357,15 @@ class Horse extends Piece {
             new Position(this.x - 1, this.y - 2),
             new Position(this.x - 2, this.y - 1)
         ];
-
-        // Removendo quem tá fora do tabuleiro
-        validAttacks = validAttacks.filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8));
-
-        // Remove as posições as quais não possuem inimigos
-        validAttacks = validAttacks.filter((position) => {
-            const targetPiece = this.chessBoard.getPieceAtPosition(position.x, position.y);
-            return targetPiece && targetPiece.color !== this.color;
-        });
         
-        return validAttacks;
+        return validAttacks
+            // Remove posições inválidas
+            .filter((position) => (position.x >= 0 && position.x < 8 && position.y >= 0 && position.y < 8))
+            // Seleciona apenas peças inimigas
+            .filter((position) => {
+                const targetPiece = this.chessBoard.getPieceAtPosition(position.x, position.y);
+                return targetPiece && targetPiece.color !== this.color;
+            });
     }
 }
 
