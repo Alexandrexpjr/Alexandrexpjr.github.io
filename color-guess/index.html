@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color guess</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1 id="title">Adivinhe a cor</h1></header>
+  <main id="main-content">
+    <section id="random-color">
+      <span id="rgb-color"></span>
+      <span id="score">Placar: 0</span>
+    </section>
+    <section id="balls">
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+    </section>
+    <section id="select-color"><h2 id="answer"></h2></section>
+    <section id="buttons">
+      <button id="reset-game">Resetar o game</button>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>

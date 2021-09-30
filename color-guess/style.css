@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header , #balls {
+  display: flex;
+  justify-content: center;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+#balls .ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
+#answer {
+  text-align: center;
+  line-height: 200%;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#reset-game {
+  background-color: rgb(218, 37, 37);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.selected {
+  transition: 300ms;
+  transform: scale(1.2);
+}
+
+#random-color {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 150%;
+}
