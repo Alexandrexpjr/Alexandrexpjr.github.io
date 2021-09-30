@@ -30,6 +30,10 @@ class Position {
         return `(${this._x}, ${this._y})`;
     }
 
+    equals(anotherPosition) {
+        return this._x === anotherPosition.x && this._y === anotherPosition.y;
+    }
+
     get x() {
         return this._x;
     }
@@ -81,9 +85,15 @@ class Piece {
 
     move(x, y) {
         if (this.isAlive && this.canMove(x, y)) {
+            const oldPosition = new Position(this.x, this.y);
+            const newPosition = new Position(x, y);
+            
+            this.onBeforeMove(oldPosition, newPosition);
+
+            this.setPosition(newPosition.x, newPosition.y);
             this._hasMoved = true;
 
-            this.setPosition(x, y);
+            this.onAfterMove(oldPosition, newPosition);
 
             return true;
         }
@@ -137,6 +147,9 @@ class Piece {
         return this.raycast(direction, amount, counter, result);
     }
 
+    onBeforeMove(oldPosition, newPosition) { }
+    onAfterMove(oldPosition, newPosition) { }
+
     get chessBoard() {
         return this._chessBoard;
     }
@@ -169,6 +182,10 @@ class Piece {
         return this._color;
     }
 
+    get hasMoved() {
+        return this._hasMoved;
+    }
+
     get isDead() {
         return this._isDead;
     }
@@ -184,7 +201,7 @@ class King extends Piece {
     }
 
     validMoves() {
-        let raycasts = [
+        let moves = [
             ...this.raycast(Directions.N, 1),
             ...this.raycast(Directions.NE, 1),
             ...this.raycast(Directions.E, 1),
@@ -195,12 +212,16 @@ class King extends Piece {
             ...this.raycast(Directions.NW, 1)
         ];
 
-        return raycasts
+        this.validCastles().forEach((castle) => {
+            moves.push(castle.position);
+        });
+
+        return moves
             .filter((move) => move instanceof Position);
     }
 
     validAttacks() {
-        let raycasts = [
+        let targets = [
             ...this.raycast(Directions.N, 1),
             ...this.raycast(Directions.NE, 1),
             ...this.raycast(Directions.E, 1),
@@ -211,10 +232,45 @@ class King extends Piece {
             ...this.raycast(Directions.NW, 1)
         ];
 
-        return raycasts
-            .filter((move) => move instanceof Piece)
+        return targets
+            .filter((step) => step instanceof Piece)
             .filter((piece) => piece._color !== this._color)
             .map((piece) => piece.position);
+    }
+
+    validCastles() {
+        let validCastles = [];
+
+        if (this._hasMoved) return validCastles;
+
+        const rookE = this.raycast(Directions.E, 3).find((step) => step instanceof Rook);
+        const rookW = this.raycast(Directions.W, 4).find((step) => step instanceof Rook);
+
+        if (rookE && !rookE.hasMoved) {
+            validCastles.push({
+                position: new Position(this.x + 2, this.y),
+                rook: rookE,
+                rookPosition: new Position(rookE.x - 2, rookE.y)
+            });
+        }
+
+        if (rookW && !rookW.hasMoved) {
+            validCastles.push({
+                position: new Position(this.x - 2, this.y),
+                rook: rookW,
+                rookPosition: new Position(rookW.x + 3, rookW.y)
+            });
+        }
+
+        return validCastles;
+    }
+
+    onBeforeMove(oldPosition, newPosition) {
+        const castle = this.validCastles().find((castle) => castle.position.equals(newPosition));
+
+        if (castle) {
+            castle.rook.setPosition(castle.rookPosition.x, castle.rookPosition.y);
+        }
     }
 }
 

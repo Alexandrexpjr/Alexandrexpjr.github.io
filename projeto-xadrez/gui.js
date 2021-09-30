@@ -108,10 +108,16 @@ function selectPiece(piece) {
 }
 
 function movePiece(piece, x, y) {
+  const castle = piece instanceof King ? piece.validCastles().find((castle) => castle.position.equals(new Position(x, y))) : undefined;
+
   if (piece.move(x, y)) {
     selectedPiece = undefined;
 
     updatePiece(piece);
+
+    if (castle) {
+      updatePiece(castle.rook);
+    }
 
     deselectAllSquares();
     removeMoveHighlights();
