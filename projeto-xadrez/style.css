@@ -23,6 +23,7 @@ body {
   position: relative;
   font-size: 64px;
   margin-left: 30px;
+  overflow: hidden;
 }
 
 #gridLayer, #piecesLayer {
@@ -97,10 +98,12 @@ body {
   transition: bottom 300ms, left 300ms, transform 300ms, opacity 300ms;
   user-select: none;
   cursor: pointer;
+  font-size: inherit;
+  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
 }
 
 #piecesLayer .piece.black {
-  color: black;
+  color: #444;
 }
 
 #piecesLayer .piece.white {
@@ -187,3 +190,68 @@ body {
 #piecesLayer .piece.h7 { bottom: 75%; left: 87.5%; }
 #piecesLayer .piece.h8 { bottom: 87.5%; left: 87.5%; }
 
+#promoteLayer {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#promoteLayer .promote {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 12.5%;
+  height: 56.25%;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+#promoteLayer .promote .option {
+  display: block;
+  width: 100%;
+  height: 22.22222%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  color: white;
+  text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.75517px 0.958851px 0px, rgb(0, 0, 0) 1.0806px 1.68294px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.81859px 0px, rgb(0, 0, 0) -1.60229px 1.19694px 0px, rgb(0, 0, 0) -1.97998px 0.28224px 0px, rgb(0, 0, 0) -1.87291px -0.701566px 0px, rgb(0, 0, 0) -1.30729px -1.5136px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.91785px 0px, rgb(0, 0, 0) 1.41734px -1.41108px 0px, rgb(0, 0, 0) 1.92034px -0.558831px 0px;
+}
+
+#promoteLayer .promote .close {
+  display: block;
+  width: 100%;
+  height: 11.11111%;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  outline: none;
+  font-size: 32px;
+}
+
+#promoteLayer.white .promote {
+  top: 0;
+}
+
+#promoteLayer.white .promote .option {
+  color: white;
+}
+
+#promoteLayer.black .promote {
+  bottom: 0;
+  flex-direction: column-reverse;
+}
+
+#promoteLayer.black .promote .option {
+  color: #444;
+}
+
+#promoteLayer.a .promote { left: 0; }
+#promoteLayer.b .promote { left: 12.5%; }
+#promoteLayer.c .promote { left: 25%; }
+#promoteLayer.d .promote { left: 37.5%; }
+#promoteLayer.e .promote { left: 50%; }
+#promoteLayer.f .promote { left: 62.5%; }
+#promoteLayer.g .promote { left: 75%; }
+#promoteLayer.h .promote { left: 87.5%; }

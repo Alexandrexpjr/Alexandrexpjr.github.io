@@ -12,9 +12,18 @@
     <div id="chessBoard">
       <div id="gridLayer"></div>
       <div id="piecesLayer"></div>
+      <div id="promoteLayer">
+        <div class="promote"> 
+          <button class="option" data-value="queen">&#9819;</button>
+          <button class="option" data-value="rook">&#9820;</button>
+          <button class="option" data-value="bishop">&#9821;</button>
+          <button class="option" data-value="horse">&#9822;</button>
+          <button class="close">&times;</button>
+        </div>
+      </div>
     </div>
   </div>
-
+  
   <!-- Enums -->
   <script src="./js/enums/piece-colors.enum.js"></script>
   <script src="./js/enums/directions.enum.js"></script>
