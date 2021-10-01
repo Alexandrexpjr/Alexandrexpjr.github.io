@@ -4,11 +4,6 @@ const piecesLayerEl = document.querySelector('#piecesLayer');
 
 const chessBoard = new ChessBoard();
 let selectedPiece = undefined;
-let currentTurn = PieceColors.WHITE;
-
-function switchTurn() {
-  currentTurn = (currentTurn === PieceColors.WHITE) ? PieceColors.BLACK : PieceColors.WHITE;
-}
 
 function createBoard() {
   for (let i = 0; i < 64; i += 1) {
@@ -88,7 +83,7 @@ function highlightAttacks(positions) {
 }
 
 function selectPiece(piece) {
-  if(piece.color === currentTurn) {
+  if(piece.color === chessBoard.currentTurn) {
 
     selectedPiece = piece;
   
@@ -107,10 +102,10 @@ function selectPiece(piece) {
   }
 }
 
-function movePiece(piece, x, y) {
-  const castle = piece instanceof King ? piece.validCastles().find((castle) => castle.position.equals(new Position(x, y))) : undefined;
+function movePiece(piece, targetPosition) {
+  const castle = piece instanceof King ? piece.validCastles().find((castle) => castle.position.equals(targetPosition)) : undefined;
 
-  if (piece.move(x, y)) {
+  if (piece.move(targetPosition.x, targetPosition.y)) {
     selectedPiece = undefined;
 
     updatePiece(piece);
@@ -122,21 +117,33 @@ function movePiece(piece, x, y) {
     deselectAllSquares();
     removeMoveHighlights();
     removeAttackHighlights();
-    switchTurn();
+
+    chessBoard.switchTurn();
   }
 }
 
-function attackPiece(piece, targetPiece) {
-  if (piece.attack(targetPiece)) {
-    selectedPiece = undefined;
+function attackPiece(piece, targetPosition) {
+  const targetPiece = chessBoard.getPieceAtPosition(targetPosition.x, targetPosition.y);
+  const enpassant = selectedPiece instanceof Pawn ? selectedPiece.validEnpassants().find((enpassant) => enpassant.position.equals(targetPosition)) : undefined;
 
+  if (piece.attack(targetPosition.x, targetPosition.y)) {
+    selectedPiece = undefined;
+    
     updatePiece(piece);
-    updatePiece(targetPiece);
+
+    if (targetPiece) {
+      updatePiece(targetPiece);
+    } else {
+      if (enpassant) {
+        updatePiece(enpassant.pawn);
+      }
+    }
 
     deselectAllSquares();
     removeMoveHighlights();
     removeAttackHighlights();
-    switchTurn();
+
+    chessBoard.switchTurn();
   }
 }
 
@@ -159,17 +166,14 @@ function onChessBoardClick(event) {
       layerY += event.target.offsetTop;
     }
 
-    const x = Math.floor(layerX / squareSize);
-    const y = 7 - Math.floor(layerY / squareSize);
+    const targetPosition = new Position(Math.floor(layerX / squareSize), 7 - Math.floor(layerY / squareSize));
 
-    if (selectedPiece.x != x || selectedPiece.y != y) {
-      const targetPiece = chessBoard.getPieceAtPosition(x, y);
+    if (selectedPiece.x != targetPosition.x || selectedPiece.y != targetPosition.y) {
+      const isMove = selectedPiece.validMoves().some((position) => position.equals(targetPosition));
+      if (isMove) return movePiece(selectedPiece, targetPosition);
 
-      if (targetPiece) {
-        attackPiece(selectedPiece, targetPiece);
-      } else {
-        movePiece(selectedPiece, x, y);
-      }
+      const isAttack = selectedPiece.validAttacks().some((position) => position.equals(targetPosition));
+      if (isAttack) return attackPiece(selectedPiece, targetPosition);
     }
   }
 }

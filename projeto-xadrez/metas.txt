@@ -1,0 +1,4 @@
+- tirar os movimentos de check do rei
+- promoção
+- informação dos jogadores (pontuação das peças, peças comidas, etc)
+- numeração do tabuleiro
