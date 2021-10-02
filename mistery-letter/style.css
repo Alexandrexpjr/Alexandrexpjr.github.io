@@ -4,6 +4,47 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: sans-serif;
+  background-color: white;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  margin: 20px 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+#input-button {
+  align-items: center;
+}
+
+#carta-texto {
+  margin-right: 20px;
+  width: 80%;
+  font-size: 14px;
+  padding: 3px;
+}
+
+#criar-carta {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(10, 150, 100);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
 .newspaper {
   background-color: antiquewhite;
   font-family: 'Times New Roman';
@@ -24,6 +65,11 @@
   font-family: Verdana;
   font-weight: 900;
 }
+
+#carta-gerada {
+  text-align: center;
+}
+
 #carta-gerada span {
   display: inline-block;
 }
@@ -58,3 +104,4 @@
 .skewright {
   transform: skewX(-10deg);
 }
+

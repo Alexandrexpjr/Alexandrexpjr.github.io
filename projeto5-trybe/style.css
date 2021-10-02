@@ -135,7 +135,7 @@ footer {
   #div-logo {
     display:flex;
     order: -1;
-    width: fit-content;
+    width: auto;
     margin: 0 auto;
   }
   #trybewarts-forms-logo {
@@ -153,7 +153,7 @@ footer {
   #div-logo {
     display:flex;
     order: 1;
-    width: fit-content;
+    width: auto;
     margin: 0 auto;
   }
   #div-rate {
