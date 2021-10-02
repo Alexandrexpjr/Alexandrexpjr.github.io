@@ -116,7 +116,7 @@ ul {
     border: 2px solid black;
 }
 
-#projects-list li:nth-child(6) img {
+#projects-list #meme {
     width: 50px;
 }
 
