@@ -68,7 +68,7 @@ class King extends Piece {
         return validCastles;
     }
 
-    onBeforeMove(oldPosition, newPosition) {
+    onBeforeMove(oldPosition, newPosition, options) {
         const castle = this.validCastles().find((castle) => castle.position.equals(newPosition));
 
         if (castle) {

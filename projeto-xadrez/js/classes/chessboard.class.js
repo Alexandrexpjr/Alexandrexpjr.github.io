@@ -50,10 +50,10 @@ class ChessBoard {
         this._pieces.push(whiteBishopQ, whiteBishopK, blackBishopQ, blackBishopK);
 
         // Horse
-        const whiteHorseQ = new Horse(this, 'whq', PieceColors.WHITE);
-        const whiteHorseK = new Horse(this, 'whk', PieceColors.WHITE);
-        const blackHorseQ = new Horse(this, 'bhq', PieceColors.BLACK);
-        const blackHorseK = new Horse(this, 'bhk', PieceColors.BLACK);
+        const whiteHorseQ = new Horse(this, 'wkq', PieceColors.WHITE);
+        const whiteHorseK = new Horse(this, 'wkk', PieceColors.WHITE);
+        const blackHorseQ = new Horse(this, 'bkq', PieceColors.BLACK);
+        const blackHorseK = new Horse(this, 'bkk', PieceColors.BLACK);
 
         whiteHorseQ.setPosition(1, 0);
         whiteHorseK.setPosition(6, 0);
@@ -74,6 +74,10 @@ class ChessBoard {
 
             this._pieces.push(whitePawn, blackPawn);
         }
+
+        // const whitePawn = new Pawn(this, `wp1`, PieceColors.WHITE);
+        // whitePawn.setPosition(0, 6);
+        // this._pieces.push(whitePawn);
     }
 
     getPieceAtPosition(x, y) {

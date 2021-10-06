@@ -26,30 +26,34 @@ class Piece {
         return this.validAttacks().some((attack) => attack.x == x && attack.y == y);
     }
 
-    move(x, y) {
+    move(x, y, options = {}) {
         if (this.isAlive && this.canMove(x, y)) {
             const oldPosition = new Position(this.x, this.y);
             const newPosition = new Position(x, y);
-            
-            this.onBeforeMove(oldPosition, newPosition);
-            this.onMove(oldPosition, newPosition);
-            this.onAfterMove(oldPosition, newPosition);
 
-            return true;
+            this.onBeforeMove(oldPosition, newPosition, options);
+            
+            const move = this.onMove(oldPosition, newPosition, options);
+
+            if (move) this.onAfterMove(oldPosition, newPosition, options);
+
+            return move;
         }
 
         return false;
     }
 
-    attack(x, y) {
+    attack(x, y, options = {}) {
         if (this.isAlive && this.canAttack(x, y)) {
             const targetPosition = new Position(x, y);
 
-            this.onBeforeAttack(targetPosition);
-            this.onAttack(targetPosition);
-            this.onAfterAttack(targetPosition);
+            this.onBeforeAttack(targetPosition, options);
 
-            return true;
+            const attack = this.onAttack(targetPosition, options);
+
+            if (attack) this.onAfterAttack(targetPosition, options);
+
+            return attack;
         }
 
         return false;
@@ -89,33 +93,39 @@ class Piece {
         return this.raycast(direction, amount, counter, result);
     }
 
-    onBeforeMove(oldPosition, newPosition) {
+    onBeforeMove(oldPosition, newPosition, options) {
 
     }
 
-    onMove(oldPosition, newPosition) {
+    onMove(oldPosition, newPosition, options) {
         this.setPosition(newPosition.x, newPosition.y);
         this._hasMoved = true;
+        return true;
     }
 
-    onAfterMove(oldPosition, newPosition) {
+    onAfterMove(oldPosition, newPosition, options) {
 
     }
 
-    onBeforeAttack(targetPosition) {
+    onBeforeAttack(targetPosition, options) {
 
     }
     
-    onAttack(targetPosition) {
+    onAttack(targetPosition, options) {
+        this.onBeforeAttack(targetPosition, options);
+
         const targetPiece = this._chessBoard.getPieceAtPosition(targetPosition.x, targetPosition.y);
 
         if (targetPiece && targetPiece.isAlive) {
             targetPiece.kill();
             this.setPosition(targetPiece.x, targetPiece.y);
+            return true;
         }
+
+        return false;
     }
 
-    onAfterAttack(targetPosition) {
+    onAfterAttack(targetPosition, options) {
 
     }
 

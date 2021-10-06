@@ -1,6 +1,7 @@
 const chessBoardEl = document.querySelector('#chessBoard');
 const gridLayerEl = document.querySelector('#gridLayer');
 const piecesLayerEl = document.querySelector('#piecesLayer');
+const promoteLayer = document.querySelector('#promoteLayer');
 
 const chessBoard = new ChessBoard();
 let selectedPiece = undefined;
@@ -29,11 +30,24 @@ function updatePiece(piece) {
   const pieceEl = piecesLayerEl.querySelector(`.piece.${piece.identifier}`);
   pieceEl.className = '';
   pieceEl.classList.add('piece', piece.identifier, piece.color.slug, piece.position.name);
-  if (piece.isDead) {
-    pieceEl.classList.add('dead');
+
+  if (piece instanceof Pawn && piece.promotedPiece) {
+    pieceEl.classList.add('promoted');
+
+    createPiece(piece.promotedPiece);
+
+    setTimeout(() => {
+      pieceEl.remove();
+    }, 500);
   }
 
-  // dps de um tempo, deleta a peça
+  if (piece.isDead) {
+    pieceEl.classList.add('dead');
+
+    setTimeout(() => {
+      pieceEl.remove();
+    }, 500);
+  }
 }
 
 function createPieces(chessBoard) {
@@ -102,10 +116,10 @@ function selectPiece(piece) {
   }
 }
 
-function movePiece(piece, targetPosition) {
+function movePiece(piece, targetPosition, options) {
   const castle = piece instanceof King ? piece.validCastles().find((castle) => castle.position.equals(targetPosition)) : undefined;
 
-  if (piece.move(targetPosition.x, targetPosition.y)) {
+  if (piece.move(targetPosition.x, targetPosition.y, options)) {
     selectedPiece = undefined;
 
     updatePiece(piece);
@@ -147,6 +161,35 @@ function attackPiece(piece, targetPosition) {
   }
 }
 
+function promotionInput(piece) {
+  return new Promise((resolve, reject) => {
+    const optionEls = Array.from(promoteLayer.querySelectorAll('.promote .option'));
+    promoteLayer.style.display = 'block';
+    promoteLayer.classList.add(piece.color.slug, piece.position.name.slice(0, 1));
+
+    const onPromoteOptionClick = ({ target }) => {
+      const value = target.getAttribute('data-value');
+
+      if (value) {
+        optionEls.forEach((optionEl) => {
+          optionEl.removeEventListener('click', onPromoteOptionClick);
+        });
+
+        promoteLayer.style.display = 'none';
+        promoteLayer.className = '';
+        
+        resolve(value);
+      } else {
+        reject();
+      }
+    };
+
+    optionEls.forEach((optionEl) => {
+      optionEl.addEventListener('click', onPromoteOptionClick);
+    });
+  });
+}
+
 function onPieceClick(piece) {
   return (event) => {
     selectPiece(piece);
@@ -168,12 +211,26 @@ function onChessBoardClick(event) {
 
     const targetPosition = new Position(Math.floor(layerX / squareSize), 7 - Math.floor(layerY / squareSize));
 
+    // TODO: REESTRUTURAR
     if (selectedPiece.x != targetPosition.x || selectedPiece.y != targetPosition.y) {
       const isMove = selectedPiece.validMoves().some((position) => position.equals(targetPosition));
-      if (isMove) return movePiece(selectedPiece, targetPosition);
 
-      const isAttack = selectedPiece.validAttacks().some((position) => position.equals(targetPosition));
-      if (isAttack) return attackPiece(selectedPiece, targetPosition);
+      if (isMove) {
+        if(selectedPiece instanceof Pawn && selectedPiece.canPromoteAtPosition(targetPosition.x, targetPosition.y)) {
+          promotionInput(selectedPiece).then((promotion) => {
+            movePiece(selectedPiece, targetPosition, {
+              promotion: promotion
+            });
+          });
+        } else {
+          movePiece(selectedPiece, targetPosition);
+        }
+      }
+
+      if (selectedPiece) {
+        const isAttack = selectedPiece.validAttacks().some((position) => position.equals(targetPosition));
+        if (isAttack) return attackPiece(selectedPiece, targetPosition);
+      }
     }
   }
 }
