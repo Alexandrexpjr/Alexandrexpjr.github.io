@@ -1,9 +1,7 @@
-- Tirar os movimentos de check do rei
-- Promoção
 - Informação dos jogadores (pontuação das peças, peças comidas, etc)
-- Numeração do tabuleiro
+- Tirar os movimentos de check do rei
 - Empate por:
   - Afogamento
   - Repetição
   - Material insuficiente (sem peões, sobrando apenas 1 cavalo / 1 bispo)
-  - Mudar nome dos cavalos, de horse para knight
+- Mudar nome dos cavalos, de horse para knight

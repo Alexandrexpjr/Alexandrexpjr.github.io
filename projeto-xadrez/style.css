@@ -87,6 +87,43 @@ body {
   transform: translate(-50%, -50%);
 }
 
+#gridLayer .square:before,
+#gridLayer .square:after {
+  display: block;
+  position: absolute;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: monospace;
+}
+#gridLayer .square:before {
+  top: 5%;
+  left: 5%;
+}
+#gridLayer .square:after {
+  bottom: 5%;
+  right: 5%;
+}
+
+#gridLayer .square.a1:before { content: '1'; }
+#gridLayer .square.a2:before { content: '2'; }
+#gridLayer .square.a3:before { content: '3'; }
+#gridLayer .square.a4:before { content: '4'; }
+#gridLayer .square.a5:before { content: '5'; }
+#gridLayer .square.a6:before { content: '6'; }
+#gridLayer .square.a7:before { content: '7'; }
+#gridLayer .square.a8:before { content: '8'; }
+
+#gridLayer .square.a1:after { content: 'a'; }
+#gridLayer .square.b1:after { content: 'b'; }
+#gridLayer .square.c1:after { content: 'c'; }
+#gridLayer .square.d1:after { content: 'd'; }
+#gridLayer .square.e1:after { content: 'e'; }
+#gridLayer .square.f1:after { content: 'f'; }
+#gridLayer .square.g1:after { content: 'g'; }
+#gridLayer .square.h1:after { content: 'h'; }
+
 #piecesLayer .piece {
   display: flex;
   position: absolute;
@@ -190,6 +227,7 @@ body {
 #piecesLayer .piece.h6 { bottom: 62.5%; left: 87.5%; }
 #piecesLayer .piece.h7 { bottom: 75%; left: 87.5%; }
 #piecesLayer .piece.h8 { bottom: 87.5%; left: 87.5%; }
+
 
 #promoteLayer {
   display: block;

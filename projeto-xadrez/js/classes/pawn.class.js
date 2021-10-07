@@ -69,7 +69,7 @@ class Pawn extends Piece {
         this._isEnpassantable = false;
     }
 
-    promote(x, y, pieceType) {
+    promote(pieceType) {
         const pawnNumber = this._identifier.slice(-1);
         let piece = undefined;
 
@@ -80,7 +80,7 @@ class Pawn extends Piece {
             default: piece = new Queen(this._chessBoard, `wq${pawnNumber}`, this._color);
         }
 
-        piece.setPosition(x, y);
+        piece.setPosition(this.x, this.y);
 
         this._chessBoard._pieces.splice(this._chessBoard._pieces.indexOf(this), 1, piece);
 
@@ -99,37 +99,51 @@ class Pawn extends Piece {
         if (this.canPromoteAtPosition(newPosition.x, newPosition.y)) {
             if (!options.promotion) return false;
     
-            switch(options.promotion) {
-                case 'bishop': this.promote(newPosition.x, newPosition.y, Bishop); break;
-                case 'rook': this.promote(newPosition.x, newPosition.y, Rook); break;
-                case 'horse': this.promote(newPosition.x, newPosition.y, Horse); break;
-                default: this.promote(newPosition.x, newPosition.y, Queen);
-            }
-
-            return true;
-        } else {
             this.setPosition(newPosition.x, newPosition.y);
             this._hasMoved = true;
+
+            switch(options.promotion) {
+                case 'bishop': this.promote(Bishop); break;
+                case 'rook': this.promote(Rook); break;
+                case 'horse': this.promote(Horse); break;
+                default: this.promote(Queen);
+            }
             return true;
         }
+
+        this.setPosition(newPosition.x, newPosition.y);
+        this._hasMoved = true;
+        return true;
     }
 
     onAttack(targetPosition, options) {
         const targetPiece = this._chessBoard.getPieceAtPosition(targetPosition.x, targetPosition.y);
-
         if (targetPiece && targetPiece.isAlive) {
-            targetPiece.kill();
-            this.setPosition(targetPiece.x, targetPiece.y);
+            if (this.canPromoteAtPosition(targetPosition.x, targetPosition.y)) {
+                if (!options.promotion) return false;
 
-            return true;
-        } else {
-            const enpassant = this.validEnpassants().find((enpassant) => enpassant.position.equals(targetPosition));
+                targetPiece.kill();
+                this.setPosition(targetPiece.x, targetPiece.y);
 
-            if (enpassant) {
-                enpassant.pawn.kill();
-                this.setPosition(enpassant.position.x, enpassant.position.y);
+                switch(options.promotion) {
+                    case 'bishop': this.promote(Bishop); break;
+                    case 'rook': this.promote(Rook); break;
+                    case 'horse': this.promote(Horse); break;
+                    default: this.promote(Queen);
+                }
                 return true;
             }
+
+            targetPiece.kill();
+            this.setPosition(targetPiece.x, targetPiece.y);
+            return true;
+        }
+
+        const enpassant = this.validEnpassants().find((enpassant) => enpassant.position.equals(targetPosition));
+        if (enpassant) {
+            enpassant.pawn.kill();
+            this.setPosition(enpassant.position.x, enpassant.position.y);
+            return true;
         }
 
         return false;
