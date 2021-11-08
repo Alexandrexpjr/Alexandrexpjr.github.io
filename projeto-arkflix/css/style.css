@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+:root {
+  --vermelho--principal: #e50914;
+  --cinza--muito--escuro: #111;
+  --cinza--escuro: #222;
+  --cinza--muito--claro: #ddd;
+  --cinza--opaco: #666a66;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: var(--cinza--muito--escuro); */
+  font-family: sans-serif;
+}
+
+header {
+  display: flex;
+  background-color: var(--cinza--muito--escuro);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.title {
+  color: var(--vermelho--principal);
+  padding: 20px 0;
+  font-size: 3rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-left: 10px;
+}
+
+.nav-links ul{
+  display: flex;
+  list-style: none;
+}
+
+.nav-link {
+  margin: 10px;
+  color: var(--cinza--muito--claro);
+}
+
+.nav-link a {
+  text-decoration: none;
+  color: var(--cinza--muito--claro);
+}
+
+/* Destaque */
+
+.highlight {
+  width: 100%;
+  height: 400px;
+  background-image: url('../images/1509525503_banner5.jpg');
+  background-size: cover;
+  color: white;
+  font-family: sans-serif;
+  line-height: 150%;
+}
+
+.highlight-content {
+  width: 35%;
+  margin-left: 10%;
+  padding-top: 25px;
+}
+
+#map-title {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+#map-description {
+  font-size: 1rem;
+}
+
+.highlight-btns button{
+  padding: 5px 15px;
+  font-weight: bold;
+  margin: 10px;
+  margin-left: 0;
+  border-radius: 5px;
+}
+
+#btn-watch {
+  background-color: var(--cinza--muito--claro);
+}
+
+#btn-moreinfo {
+  background-color: var(--cinza--opaco);
+  color: white;
+}
+
+/* Jogos Populares, Criaturas Populares */
+
+#popular-list, #popular-creatures-list {
+  display: flex;
+  list-style: none;
+}
+
+#popular-list img, #popular-creatures-list img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.popular-map-card, .popular-creature-card {
+  text-align: center;
+  transition: all 0.15s;
+  margin: 20px 0;
+}
+
+.popular {
+  background-color: var(--cinza--muito--escuro);
+  color: white;
+}
+
+.popular h2 {
+  padding: 15px;
+  color: var(--cinza--muito--claro);
+  font-family: sans-serif;
+}
+
+.popular-map-card:hover {
+  transform: scale(1.1);
+}
+
+/* Criaturas populares */
+
+#popular-creatures-list {
+  align-items: baseline;
+}
+
+.popular-creature-card {
+  text-align: center;
+  transition: all 0.15s;
+  margin: 40px 0;
+}
+
+.popular-creature-card:hover {
+  transform: scale(1.3);
+}
+
+@media screen and (max-width: 900px) {
+  .highlight {
+    background-size: unset;
+    background-position: center center;
+  }
+  .highlight-content {
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    text-shadow: 3px 3px 2px rgba(150, 150, 150, 1);
+  }
+}
