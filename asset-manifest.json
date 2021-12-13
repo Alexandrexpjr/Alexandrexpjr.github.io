@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/timeToFiveDecades/static/css/main.efa817f1.chunk.css",
+    "main.js": "/timeToFiveDecades/static/js/main.868b2491.chunk.js",
+    "main.js.map": "/timeToFiveDecades/static/js/main.868b2491.chunk.js.map",
+    "runtime-main.js": "/timeToFiveDecades/static/js/runtime-main.99f8b60b.js",
+    "runtime-main.js.map": "/timeToFiveDecades/static/js/runtime-main.99f8b60b.js.map",
+    "static/js/2.e92b86a1.chunk.js": "/timeToFiveDecades/static/js/2.e92b86a1.chunk.js",
+    "static/js/2.e92b86a1.chunk.js.map": "/timeToFiveDecades/static/js/2.e92b86a1.chunk.js.map",
+    "static/js/3.8ccd5387.chunk.js": "/timeToFiveDecades/static/js/3.8ccd5387.chunk.js",
+    "static/js/3.8ccd5387.chunk.js.map": "/timeToFiveDecades/static/js/3.8ccd5387.chunk.js.map",
+    "index.html": "/timeToFiveDecades/index.html",
+    "static/css/main.efa817f1.chunk.css.map": "/timeToFiveDecades/static/css/main.efa817f1.chunk.css.map",
+    "static/js/2.e92b86a1.chunk.js.LICENSE.txt": "/timeToFiveDecades/static/js/2.e92b86a1.chunk.js.LICENSE.txt",
+    "static/media/beijandomylove.d537f468.JPG": "/timeToFiveDecades/static/media/beijandomylove.d537f468.JPG",
+    "static/media/mylovedesconfiada.09059676.JPG": "/timeToFiveDecades/static/media/mylovedesconfiada.09059676.JPG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99f8b60b.js",
+    "static/js/2.e92b86a1.chunk.js",
+    "static/css/main.efa817f1.chunk.css",
+    "static/js/main.868b2491.chunk.js"
+  ]
+}
