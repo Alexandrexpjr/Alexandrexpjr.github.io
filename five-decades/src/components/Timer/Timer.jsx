@@ -41,6 +41,7 @@ function Timer({ setDay }) {
         <h1>Faltam <span>{timeTo} segundos para 5 décadas</span></h1>
         <h2>Isso equivale a {Math.floor(timeTo / 60)} minutos</h2>
         <h3>E também a {Math.floor(timeTo / 3600)} horas </h3>
+        <h4>Teste</h4>
       </div>
     );
   }
