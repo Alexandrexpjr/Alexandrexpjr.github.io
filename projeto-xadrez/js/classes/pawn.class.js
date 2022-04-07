@@ -76,7 +76,7 @@ class Pawn extends Piece {
         switch (pieceType) {
             case Bishop: piece = new Bishop(this._chessBoard, `wb${pawnNumber}`, this._color); break;
             case Rook: piece = new Rook(this._chessBoard, `wr${pawnNumber}`, this._color); break;
-            case Horse: piece = new Horse(this._chessBoard, `wk${pawnNumber}`, this._color); break;
+            case Knight: piece = new Knight(this._chessBoard, `wk${pawnNumber}`, this._color); break;
             default: piece = new Queen(this._chessBoard, `wq${pawnNumber}`, this._color);
         }
 
@@ -105,7 +105,7 @@ class Pawn extends Piece {
             switch(options.promotion) {
                 case 'bishop': this.promote(Bishop); break;
                 case 'rook': this.promote(Rook); break;
-                case 'horse': this.promote(Horse); break;
+                case 'knight': this.promote(Knight); break;
                 default: this.promote(Queen);
             }
             return true;
@@ -128,7 +128,7 @@ class Pawn extends Piece {
                 switch(options.promotion) {
                     case 'bishop': this.promote(Bishop); break;
                     case 'rook': this.promote(Rook); break;
-                    case 'horse': this.promote(Horse); break;
+                    case 'knight': this.promote(Knight); break;
                     default: this.promote(Queen);
                 }
                 return true;

@@ -1,6 +1,6 @@
-class Horse extends Piece {
+class Knight extends Piece {
     constructor(chessBoard, identifier, color) {
-        super(chessBoard, identifier, 'Horse', '&#9822', color);
+        super(chessBoard, identifier, 'Knight', '&#9822', color);
     }
 
     validMoves() {

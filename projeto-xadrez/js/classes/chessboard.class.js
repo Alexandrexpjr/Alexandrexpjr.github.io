@@ -49,18 +49,18 @@ class ChessBoard {
 
         this._pieces.push(whiteBishopQ, whiteBishopK, blackBishopQ, blackBishopK);
 
-        // Horse
-        const whiteHorseQ = new Horse(this, 'wkq', PieceColors.WHITE);
-        const whiteHorseK = new Horse(this, 'wkk', PieceColors.WHITE);
-        const blackHorseQ = new Horse(this, 'bkq', PieceColors.BLACK);
-        const blackHorseK = new Horse(this, 'bkk', PieceColors.BLACK);
+        // Knight
+        const whiteKnightQ = new Knight(this, 'wkq', PieceColors.WHITE);
+        const whiteKnightK = new Knight(this, 'wkk', PieceColors.WHITE);
+        const blackKnightQ = new Knight(this, 'bkq', PieceColors.BLACK);
+        const blackKnightK = new Knight(this, 'bkk', PieceColors.BLACK);
 
-        whiteHorseQ.setPosition(1, 0);
-        whiteHorseK.setPosition(6, 0);
-        blackHorseQ.setPosition(1, 7);
-        blackHorseK.setPosition(6, 7);
+        whiteKnightQ.setPosition(1, 0);
+        whiteKnightK.setPosition(6, 0);
+        blackKnightQ.setPosition(1, 7);
+        blackKnightK.setPosition(6, 7);
 
-        this._pieces.push(whiteHorseQ, whiteHorseK, blackHorseQ, blackHorseK);
+        this._pieces.push(whiteKnightQ, whiteKnightK, blackKnightQ, blackKnightK);
         
         // Pawns
         for (let i = 1; i <= 8; i += 1) {

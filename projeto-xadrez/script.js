@@ -82,7 +82,7 @@ const whiteBishop = {
     view: '&#9821'
 }
 
-const whiteHorse = {
+const whiteKnight = {
     position: {
 		line: 1,
 		column: 7
@@ -245,7 +245,7 @@ const blackBishop = {
     view: '&#9821'
 }
 
-const blackHorse = {
+const blackKnight = {
     position: {
 		line: 8,
 		column: 7

@@ -4,4 +4,4 @@
   - Afogamento
   - Repetição
   - Material insuficiente (sem peões, sobrando apenas 1 cavalo / 1 bispo)
-- Mudar nome dos cavalos, de horse para knight
+- Mudar nome dos cavalos, de knight para knight
