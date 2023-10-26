@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: sans-serif;
     background-color: #f0f0f0;
@@ -101,6 +105,7 @@ ul {
 
 #projects-list {
     list-style: none;
+    box-sizing: border-box;
 }
 
 #projects-list li {
@@ -110,6 +115,7 @@ ul {
 
 #projects-list img{
     padding: 0 5px;
+    border: 2px solid transparent;
 }
 
 #projects-list img:hover{
@@ -121,7 +127,7 @@ ul {
 }
 
 #axe, #arkflix {
-    width: 50px;
+    height: 50px;
 }
 
 @media screen and (max-width: 500px) {
